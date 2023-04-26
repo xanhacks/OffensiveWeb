@@ -130,7 +130,7 @@ for (let i = 0; i < 100; i++) {
 ### Gitea - Change primary email
 
 {{< details "Proof of Concept" >}}
-Tested on **Gitea Version: 1.19.0**
+Tested on **Gitea Version 1.19.0** (2023-04-25)
 
 Before running the PoC:
 ![Before Gitea ATO](https://i.imgur.com/eYL86BI.png)
