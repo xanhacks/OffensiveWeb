@@ -1,9 +1,9 @@
 ---
 title: "Introduction"
-description: "Doks is a Hugo theme for building secure, fast, and SEO-ready documentation websites, which you can easily update and customize."
-lead: "Doks is a Hugo theme for building secure, fast, and SEO-ready documentation websites, which you can easily update and customize."
-date: 2020-10-06T08:48:57+00:00
-lastmod: 2020-10-06T08:48:57+00:00
+description: "OffensiveWeb aims to offer clear and comprehensive information on various web security concepts, such as vulnerability research, fuzzing and security measures."
+lead: "OffensiveWeb aims to offer clear and comprehensive information on various web security concepts, such as vulnerability research, fuzzing and security measures."
+date: 2023-01-01T00:00:00+00:00
+lastmod: 2023-01-01T00:00:00+00:00
 draft: false
 images: []
 menu:
@@ -13,10 +13,12 @@ weight: 100
 toc: true
 ---
 
-## Get started
+## OffensiveWeb
 
 {{< alert icon="⚠️" text="OffensiveWeb is intended for educational and informational purposes only, and should not be used for any illegal or malicious activities." />}}
 
-Welcome to **OffensiveWeb** ! Our goal is to provide clear and comprehensive information about web security concepts that can often be difficult to understand. You will also find resources related to web security, vulnerability research and analysis. Whether you're a security researcher, web developer, or just interested in learning more about web security, our documentation can help you improve your understanding of web security, stay up-to-date and and even conduct your own research.
+Welcome to **OffensiveWeb** ! Our goal is to provide clear and comprehensive information about web security concepts that can often be difficult to understand. More specifically, you will find resources related to web security, vulnerability research/analysis, fuzzing and also security measures to overcome various types of vulnerabilities.
+
+Whether you're a security researcher, web developer, or just interested in learning more about web security, our documentation can help you improve your understanding of web security, stay up-to-date and and even conduct your own research.
 
 Thank you for visiting, and we hope you find our site helpful in your journey towards a more secure web.
