@@ -7,7 +7,7 @@
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
       <a class="btn btn-primary btn-lg px-4 mb-2" href="/docs/{{ if .Site.Params.options.docsVersioning }}{{ .Site.Params.docsVersion }}/{{ end }}prologue/introduction/" role="button">Get Started</a>
-      <p class="meta">Open-source MIT Licensed. <a href="https://github.com/h-enk/doks">GitHub v{{ $data := getJSON "/package.json" }}{{ $data.version }}</a></p>
+      <p class="meta">Contribute to this project on <a href="https://github.com/xanhacks/OffensiveWeb/">GitHub</a>.</p>
     </div>
   </div>
 </section>
@@ -18,30 +18,30 @@
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4">Security aware</h2>
-        <p>Get A+ scores on <a href="https://observatory.mozilla.org/analyze/doks-child-theme.netlify.app">Mozilla Observatory</a> out of the box. Easily change the default Security Headers to suit your needs.</p>
+        <h2 class="h4">Service Worker</h2>
+        <p>A Service Worker runs in the background of a web application, it provides various features such as caching, push notifications, and offline functionality. <a href="/docs/topics/service-worker/">Learn more</a></p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">Fast by default ⚡️</h2>
-        <p>Get 100 scores on <a href="https://googlechrome.github.io/lighthouse/viewer/?gist=59aafe464a68f8bc30b8e9a636d5b053">Google Lighthouse</a> by default. Doks removes unused css, prefetches links, and lazy loads images.</p>
+        <h2 class="h4">Browser Cache</h2>
+        <p>Temporary storage location on a user's device where web browsers store website data, to improve the user's browsing experience by reducing page load times.</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">SEO-ready</h2>
-        <p>Use sensible defaults for structured data, open graph, and Twitter cards. Or easily change the SEO settings to your liking.</p>
+        <h2 class="h4">Prototype Pollution</h2>
+        <p>Manipulate the prototype of an object in a JavaScript application, leading to unexpected behavior and potential compromise of the application.</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4">Full text search</h2>
-        <p>Search your Doks site with FlexSearch. Easily customize index settings and search options to your liking.</p>
+        <h2 class="h4">Request Smuggling</h2>
+        <p>Manipulate the HTTP requests and responses in a way that can cause a web server to interpret them differently than the client does.</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">Page layouts</h2>
-        <p>Build pages with a landing page, blog, or documentation layout. Add custom sections and components to suit your needs.</p>
+        <h2 class="h4">Server-Side Request Forgery</h2>
+        <p>Allow an attacker to make unauthorized requests to internal or external network resources on behalf of the vulnerable server or application.</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">Dark mode</h2>
-        <p>Switch to a low-light UI with the click of a button. Change colors with variables to match your branding.</p>
+        <h2 class="h4">Cross-Site Scripting</h2>
+        <p>Allow an attacker to inject malicious code into a web page viewed by other users and take unauthorized actions on their behalf. <a href="/docs/topics/xss/">Learn more</a></p>
       </div>
     </div>
   </div>
