@@ -17,6 +17,13 @@
   parent = "topics"
 
 [[main]]
+  name = "Debugging"
+  weight = 42
+  identifier = "debugging"
+  url = "/docs/topics/debugging/"
+  parent = "topics"
+
+[[main]]
   name = "XSS"
   weight = 45
   identifier = "xss"

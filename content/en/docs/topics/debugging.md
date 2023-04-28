@@ -1,7 +1,7 @@
 ---
 title: "Debugging"
-description: "Overview of Cross-Site Scripting"
-lead: "Overview of Cross-Site Scripting"
+description: "Tutorials on different ways to debug your programs to do better testing."
+lead: "Tutorials on different ways to debug your programs to do better testing."
 date: 2023-01-01T00:00:00+00:00
 lastmod: 2023-01-01T00:00:00+00:00
 draft: false
