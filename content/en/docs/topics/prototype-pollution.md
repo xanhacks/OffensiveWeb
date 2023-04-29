@@ -18,4 +18,5 @@ toc: true
 - [Server-side prototype pollution: Black-box detection without the DoS](https://portswigger.net/research/server-side-prototype-pollution)
 - [Server side prototype pollution, how to detect and exploit](https://blog.yeswehack.com/talent-development/server-side-prototype-pollution-how-to-detect-and-exploit/)
 - [Research on Prototype Pollution](https://blog.s1r1us.ninja/research/PP)
+- [CodeQL Prototype-polluting function](https://codeql.github.com/codeql-query-help/javascript/js-prototype-pollution-utility/)
 
