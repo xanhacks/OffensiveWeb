@@ -83,7 +83,7 @@ The trust proxy setting is implemented using the [proxy-addr](https://www.npmjs.
 
 [Embedded JavaScript templates (EJS)](https://www.npmjs.com/package/ejs) is a NodeJS library very often used by Express to create HTML templates.
 
-### RCE on render compile
+### RCE on render
 
 The following code is inside EJS ([lib/ejs.js](https://github.com/mde/ejs/blob/v3.1.9/lib/ejs.js#L509) - v3.1.9). If you control the value of both variables `client` and `escape`, you can get a RCE.
 
