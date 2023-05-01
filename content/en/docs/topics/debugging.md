@@ -40,16 +40,85 @@ Choose the process you want to debug. Then, the `Run and Debug` window will appe
 
 The Node debugger supports restarting execution at a stack frame. See [docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_restart-frame).
 
+{{< details "Tutorial - GIF" >}}
 ![Restart frame](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/restartFrame.gif)
+{{< /details >}}
 
 #### Conditional breakpoint
 
 Conditional breakpoints are breakpoints that only pause when an expression returns a truthy value. See [docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_conditional-breakpoints).
 
+{{< details "Tutorial - GIF" >}}
 ![Conditional breakpoint](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/conditional-breakpoint.gif)
+{{< /details >}}
 
 #### Logpoints
 
 Log a message or value when code hits a certain location. See [docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_logpoints).
 
+{{< details "Tutorial - GIF" >}}
 ![Logpoints](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/logpoint-breakpoint.gif)
+{{< /details >}}
+
+### The arguments object
+
+[arguments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) is an array-like object accessible inside functions that contains the values of the arguments passed to that function.
+
+{{< details "Demo - Custom debug function" >}}
+```js
+function _debugFunc(args) {
+	let funcName = (new Error()).stack.match(/at (\S+)/g)[1].slice(3); // handle strict mode
+
+	console.log(`\n===> call ${funcName}(args.length = ${args.length})`);
+	Array.from(args).forEach((arg, index) => {
+		if (typeof arg === "string" && arg.length > 20) {
+			console.log(` | args[${index}] = (${typeof arg}) ${arg.substring(0, 20) + "..."}`);
+		} else if (typeof arg == "function") {
+			console.log(` | args[${index}] = (${typeof arg}) ${arg.toString().substring(0, 20) + "..."}`);
+		} else if (typeof arg == "object") {
+			console.log(` | args[${index}] = (${typeof arg})`);
+			console.log(arg);
+		} else {
+			console.log(` | args[${index}] = (${typeof arg}) ${arg}`);
+		}
+	});
+}
+
+function sum(a, b) {
+	_debugFunc(arguments);
+	return a + b;
+}
+
+function sayHello(name) {
+	"use strict";
+	_debugFunc(arguments);
+	console.log(`Hello ${name} !`);
+}
+
+function multiply(obj) {
+	_debugFunc(arguments);
+	return obj.first * obj.second;
+}
+
+console.log(sum(3, 5));
+sayHello("world");
+console.log(multiply({first: 12, second: 2}));
+```
+
+```bash
+$ node example.js
+===> call sum(args.length = 2)
+ | args[0] = (number) 3
+ | args[1] = (number) 5
+8
+
+===> call sayHello(args.length = 1)
+ | args[0] = (string) world
+Hello world !
+
+===> call multiply(args.length = 1)
+ | args[0] = (object)
+{ first: 12, second: 2 }
+24
+```
+{{< /details >}}
