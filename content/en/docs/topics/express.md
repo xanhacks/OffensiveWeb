@@ -112,7 +112,7 @@ Template.prototype = {
 }
 ```
 
-{{< details "EJS RCE - Proof Of Concept" >}}
+{{< details "EJS RCE - Proof of Concept" >}}
 There are two options for controlling these variables.
 
 1. Abuse server-side prototype pollution (SSPP)

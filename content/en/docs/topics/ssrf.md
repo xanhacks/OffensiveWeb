@@ -13,18 +13,6 @@ weight: 620
 toc: true
 ---
 
-## Problems updating npm packages
+## Todo
 
-Delete the `./node_modules` folder, and run again:
-
-```bash
-npm install
-```
-
-## Problems with cache
-
-Delete the temporary directories:
-
-```bash
-npm run clean
-```
+todo
