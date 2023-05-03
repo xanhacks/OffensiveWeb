@@ -120,7 +120,7 @@ console.log(link.class);      // undefined
 </script>
 ```
 
-You can retrieve some attributes like `href` and `lang` but not `class`. You can list all the attributes you can obtain on a specific element by doing fuzzing.
+You can retrieve some attributes like `href` and `lang` but not `class`. You can list all the attributes you can retrieve on a specific element by doing fuzzing.
 
 {{< details "Attribute enumeration - Proof of Concept" >}}
 ```html
