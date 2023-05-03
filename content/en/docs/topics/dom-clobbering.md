@@ -15,11 +15,15 @@ toc: true
 
 ## Getting started
 
-DOM clobbering is a technique in which you inject HTML into a page to manipulate the DOM.
+**DOM clobbering** is a technique in which you inject HTML into a page to manipulate the DOM.
 
 It is particularly useful in cases where XSS is not possible, but you can control some HTML on a page where the attributes `id` or `name` are whitelisted by the HTML filter. The most common form of DOM clobbering uses an anchor element to overwrite a global variable.
 
-> Reference [PortSwigger - DOM clobbering](https://portswigger.net/web-security/dom-based/dom-clobbering).
+*References:*
+- *[PortSwigger - DOM clobbering](https://portswigger.net/web-security/dom-based/dom-clobbering)*
+- *JavaScript for hackers - Gareth Heyes*
+
+## Attributes
 
 ### Attribute id
 
@@ -78,7 +82,7 @@ console.log(valids); // ['embed', 'form', 'iframe', 'image', 'img', 'object']
 ```
 {{< /details >}}
 
-## Other attributes
+### Other attributes
 
 Unfortunately, you can only use `id` or `name`.
 
@@ -105,7 +109,11 @@ console.log(valids); // [] - Empty array
 ```
 {{< /details >}}
 
-## Value of variable
+## Values
+
+### One level deep
+
+Use an anchor with the `href` attribute:
 
 ```html
 <a id="link" href="xyzxyz" lang="fr" class="blue"></a>
@@ -145,3 +153,83 @@ console.log(valids); // [...] - a lot
 ```
 {{< /details >}}
 
+### Two levels deep
+
+You can clobber two depths variable using `HTMLCollection`:
+
+```html
+<a id="link"></a>
+<a id="link" name="add" href="xyzxyz"></a>
+
+<script>
+console.log(link);                // HTMLCollection(2) [a#link, a#link, link: a#link, add: a#link]
+console.log(link.add);            // <a id="link" name="add" href="xyzxyz"></a>
+console.log(link.add.toString()); // http://localhost/xyzxyz
+console.log(link.add == link[1]); // true
+</script>
+```
+
+{{< alert icon="👉" >}}
+**HTMLCollection** only works on Chromium based browser (not Firefox).
+{{< /alert >}}
+
+You can also create an array of values:
+
+```html
+<a id="link"></a>
+<a id="link" name="add" href="xyzxyz"></a>
+<a id="link" name="add" href="abcabc"></a>
+
+<script>
+console.log(link[1].toString()); // http://localhost/xyzxyz
+console.log(link[2].toString()); // http://localhost/abcabc
+</script>
+```
+
+### Three levels deep
+
+```html
+<form id="login" name="user">
+	<input id="name" value="xanhacks">
+</form>
+<form id="login">
+
+<script>
+console.log(login.user.name);            // <input id="name" value="xanhacks">
+console.log(login.user.name.toString()); // [object HTMLInputElement]
+console.log(login.user.name.value);      // xanhacks
+</script>
+```
+
+### Infinite levels deep
+
+{{< alert icon="👉" >}}
+**iframe** allows you to clobber as many levels as you want. However, iframes are often blocked by HTML filters.
+{{< /alert >}}
+
+This simple example does **not** work because the iframe takes some time to render:
+
+```html
+<iframe name="page"
+	srcdoc="<a id='link' href='xanhacks'></a>">
+</iframe>
+
+<script>
+console.log(page.link); // undefined
+</script>
+```
+
+To make things works, you can add some delay by adding a CSS import:
+
+```
+<iframe name="page"
+	srcdoc="<a id='link' href='xanhacks'></a>">
+</iframe>
+<style>@import "https://xanhacks.xyz"</style> <!-- add delay -->
+
+<script>
+console.log(page);                 // Window {window: Window, self: Window, ... }
+console.log(page.link);            // <a id="link" href="xanhacks"></a>
+console.log(page.link.toString()); // http://localhost/xanhacks
+</script>
+```
