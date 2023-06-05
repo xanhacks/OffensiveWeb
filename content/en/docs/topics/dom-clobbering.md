@@ -15,13 +15,8 @@ toc: true
 
 ## Getting started
 
-**DOM clobbering** is a technique in which you inject HTML into a page to manipulate the DOM.
+**DOM Clobbering** is a vulnerability that originates from a naming collision between JavaScript variables and named HTML markups, where browsers replace pre-existing content of an undefined variable with an HTML element when the variable name and the element’s `name` (or `id`) attribute match.
 
-It is particularly useful in cases where XSS is not possible, but you can control some HTML on a page where the attributes `id` or `name` are whitelisted by the HTML filter. The most common form of DOM clobbering uses an anchor element to overwrite a global variable.
-
-*References:*
-- *[PortSwigger - DOM clobbering](https://portswigger.net/web-security/dom-based/dom-clobbering)*
-- *JavaScript for hackers - Gareth Heyes*
 
 ## Attributes
 
@@ -233,3 +228,13 @@ console.log(page.link);            // <a id="link" href="xanhacks"></a>
 console.log(page.link.toString()); // http://localhost/xanhacks
 </script>
 ```
+
+## References
+
+- [PortSwigger - DOM clobbering](https://portswigger.net/web-security/dom-based/dom-clobbering)
+- JavaScript for hackers - Gareth Heyes (book)
+- [OWASP CS - DOM Clobbering](https://cheatsheetseries.owasp.org/cheatsheets/DOM_Clobbering_Prevention_Cheat_Sheet.html)
+- [DOM Clobbering - Frederik Braun](https://www.htmhell.dev/adventcalendar/2022/12/)
+- [WHATWG - Named access on the Window object](https://html.spec.whatwg.org/multipage/nav-history-apis.html#named-access-on-the-window-object)
+- [It’s (DOM) Clobbering Time: Attack Techniques, Prevalence, and Defenses](https://scnps.co/papers/sp23_domclob.pdf)
+
