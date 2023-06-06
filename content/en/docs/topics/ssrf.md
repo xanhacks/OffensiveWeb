@@ -18,7 +18,7 @@ toc: true
 **URI Scheme Lists:** gopher, tftp, http, https, ldap, ftp, dict, ssh2, file, ogg, expect, imap, smtp, telnet, ...
 
 - [tftp](https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol): TFTP is a simple protocol for transferring files, implemented on top of the UDP/IP protocols (default port: 69)
-- dict
+- [dict](https://en.wikipedia.org/wiki/DICT): DICT is a dictionary network protocol, TCP client/server (default port: 2628)
 
 From [PHP Wrappers](https://www.php.net/manual/en/wrappers.php):
 - file:// — Accessing local filesystem
