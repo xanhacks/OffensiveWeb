@@ -68,10 +68,6 @@ Example:
 - 100 requests to `10.10.100.2:8080` divided by 100 = 50ms
 - 100 requests to `10.10.100.2:1337` divided by 100 = 200ms
 
-## Exploitation
-
-- [SSRF Attack Surface - Report on Imgur](https://hackerone.com/reports/115748)
-
 ## DoS
 
 - Load big file (ex: 10GB)
