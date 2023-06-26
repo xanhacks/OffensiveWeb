@@ -39,6 +39,7 @@ toc: true
 ### MySQL
 
 ```
+SELECT GROUP_CONCAT(schema_name,',') FROM information_schema.schemata;
 SELECT GROUP_CONCAT(table_name,',') FROM information_schema.tables;
 SELECT GROUP_CONCAT(column_name,',') FROM information_schema.columns WHERE table_name = 'users';
 ```
