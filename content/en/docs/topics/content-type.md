@@ -27,7 +27,13 @@ What happens if a `script` tag load a javascript file from a page that returns `
 | audio/*     | message/*         |
 |             | multipart/*       |
 |             | text/*            |
+|             | `empty` or `random value`  |
 
+So, it works with:
+- CSV, PDF, XML, HTML, JSON...
+- Invalid, valid: `Content-Type: image/png, video/something, text/html`
+
+---
 
 You can get the full list of MIME types on [www.iana.org](https://www.iana.org/assignments/media-types/media-types.xhtml). To extract all the MIME types from the website, you can use the following javascript snippet:
 
