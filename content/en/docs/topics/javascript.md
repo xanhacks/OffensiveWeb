@@ -174,7 +174,7 @@ Final payload (776 chars) to trigger an `alert()`:
 ## Bypass characters
 
 ```js
-[[]==0]+[];         // "true"
+[[]==0]+[]          // "true"
 []==0+``            // "false"
 1E1000+``           // "Infinity" 
 ``["fontcolor"]``   // '<font color=""></font>'
