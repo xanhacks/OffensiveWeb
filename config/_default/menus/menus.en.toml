@@ -1,48 +1,27 @@
 [[main]]
-  name = "Docs"
+  name = "Introduction"
   url = "/docs/prologue/introduction/"
   weight = 10
 
 [[main]]
-  name = "Topics"
+  name = "Client-side"
+  url = "/docs/client-side/"
+  weight = 20
+
+[[main]]
+  name = "Server-side"
+  url = "/docs/server-side/"
   weight = 30
-  identifier = "topics"
-  url = "/docs/prologue/introduction/"
 
 [[main]]
-  name = "Service Worker"
+  name = "Framework"
+  url = "/docs/framework/"
   weight = 40
-  identifier = "service-worker"
-  url = "/docs/topics/service-worker/"
-  parent = "topics"
 
 [[main]]
-  name = "Debugging"
-  weight = 42
-  identifier = "debugging"
-  url = "/docs/topics/debugging/"
-  parent = "topics"
-
-[[main]]
-  name = "XSS"
-  weight = 45
-  identifier = "xss"
-  url = "/docs/topics/xss/"
-  parent = "topics"
-
-[[main]]
-  name = "SSRF"
+  name = "HTTP"
+  url = "/docs/http/"
   weight = 50
-  identifier = "ssrf"
-  url = "/docs/topics/ssrf/"
-  parent = "topics"
-
-[[main]]
-  name = "Browser Cache"
-  weight = 60
-  identifier = "browser-cache"
-  url = "/docs/topics/browser-cache/"
-  parent = "topics"
 
 [[social]]
   name = "GitHub"
