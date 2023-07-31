@@ -253,6 +253,11 @@ for (let i = 0; i < 100; i++) {
 - Opera 10.70 build 9013 popped a dialog, that allowed me to give the script unlimited storage.
 {{< /details >}}
 
+## Self XSS
+
+- Trigger self-XSS using CSRF.
+- Force the victim to use the cookie of an infected account. You can also set the cookie's path to the vulnerable endpoint of the self-XSS to gain unauthorized access to the victim's account on other paths.
+
 ## Account Takeover
 
 ### Gitea - Change primary email
