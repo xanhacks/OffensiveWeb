@@ -36,11 +36,14 @@ win.document.body
 
 | Property      | Same-Origin   | Cross-Site    |
 |:------------- |:-------------:|:-------------:|
-| location      | READ / WRITE  | WRITE (no permission on `window.opener.location` on Firefox) |
+| location      | READ / WRITE  | WRITE *       |
 | document      | READ / WRITE  |               |
-| frames        | READ / WRITE  | Restricted (i.e. access to postMessage) |
+| frames        | READ / WRITE  | Restricted ** |
 | localStorage  | READ / WRITE  |               |
 | cookies       | READ / WRITE  |               |
+
+*: No permission on `window.opener.location` on Firefox<br>
+**: Restricted to some properties like postMessage...
 
 ## User Interaction
 
