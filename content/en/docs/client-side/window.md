@@ -36,7 +36,7 @@ win.document.body
 
 | Property      | Same-Origin   | Cross-Site    |
 |:------------- |:-------------:|:-------------:|
-| location      | READ / WRITE  | WRITE         |
+| location      | READ / WRITE  | WRITE (no permission on `window.opener.location` on Firefox) |
 | document      | READ / WRITE  |               |
 | frames        | READ / WRITE  | Restricted (i.e. access to postMessage) |
 | localStorage  | READ / WRITE  |               |
