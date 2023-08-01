@@ -21,3 +21,11 @@ toc: true
 os.path.join("uploads/", "flag.txt")  # uploads/flag.txt
 os.path.join("uploads/", "/flag.txt") # /flag.txt
 ```
+
+### re
+
+```python
+>>> re.match("\.", "../")
+<re.Match object; span=(0, 1), match='.'>
+>>> re.match("\.", "/../") # no match!
+```
