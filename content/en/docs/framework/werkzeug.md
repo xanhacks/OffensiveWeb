@@ -15,12 +15,14 @@ toc: true
 
 ## Werkzeug
 
-### Source code
+[Werkzeug](https://github.com/pallets/werkzeug) is a comprehensive WSGI web application library. It began as a simple collection of various utilities for WSGI applications and has become one of the most advanced WSGI utility libraries.
+
+## Source code
 
 - [werkzeug/debug/\_\_init\_\_.py#L179](https://github.com/pallets/werkzeug/blob/2.3.3/src/werkzeug/debug/__init__.py#L179): Debug PIN generation.
 - [werkzeug/debug/\_\_init\_\_.py#L509](https://github.com/pallets/werkzeug/blob/2.3.3/src/werkzeug/debug/__init__.py#L509): Handle `?__debugger__=yes`.
 
-### Debug mode
+## PIN in Debug mode
 
 ```python
 probably_public_bits = [
@@ -41,3 +43,10 @@ private_bits = [
 ```
 
 - [HackTricks - Werkzeug / Flask Debug](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/werkzeug)
+
+## Vulnerabilities
+
+### Client-Side Desync
+
+- Version: 2.1.0 to 2.1.1
+- [Mizu -  Abusing Client-Side Desync on Werkzeug](https://mizu.re/post/abusing-client-side-desync-on-werkzeug)
