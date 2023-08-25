@@ -20,6 +20,7 @@ toc: true
 ## Client-Side Injection
 
 ```js
+// XSS Injection
 Vue.createApp({
   template: `<div>` + userProvidedString + `</div>`
 }).mount('#app')
@@ -30,8 +31,10 @@ h('div', { innerHTML: this.userProvidedHtml })
 
 <div innerHTML={this.userProvidedHtml}></div>
 
+// Javascript protocol injection
 <a :href="userProvidedUrl">click me</a>
 
+// CSS Injection
 <h1 :style="userProvidedStyles">Title</h1>
 ```
 
