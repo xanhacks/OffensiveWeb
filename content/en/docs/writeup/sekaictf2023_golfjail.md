@@ -84,6 +84,8 @@ We know how to execute an XSS, our next challenge is to bypass the 30 characters
 
 When you're within an `iframe`, you can't employ the `location` attribute to access the top-level location. Using `top.location` exceeds the character limit. However, you can leverage the [baseURI](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/API/Document/baseURI.html) property of the Node (in this case, the `svg`). This property provides the absolute base URL of the document housing the node.
 
+> Futhermore, you cannot access the `top` window context because the [Cross-Origin-Opener-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy) header is set to `same-origin` (cross-origin documents are not loaded in the same browsing context).
+
 As we cannot directly evalute the `baseURI` property, we can create a string that will contain the URL, close this string and initiate our second payload. This means the second payload resides both within the URL and outside the `xss` parameter, allowing us to bypass the character limit.
 
 ```
