@@ -66,7 +66,7 @@ function encodeHTMLEntities(text) {
   return textArea.innerHTML;
 }
 
-document.write(`<iframe srcdoc='${encodeHTMLEntities("<img src=x onerror=alert()>")}'></iframe>`); 
+document.write(`<iframe srcdoc='${encodeHTMLEntities("<img src=x onerror=alert()>")}'></iframe>`);
 ```
 
 ### Tiny XSS
@@ -82,7 +82,7 @@ We know how to execute an XSS, our next challenge is to bypass the 30 characters
 26
 ```
 
-When you're within an `iframe`, you can't employ the `location` attribute to access the top-level location. Using `top.location` exceeds the character limit. However, you can leverage the [baseURI](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/API/Document/baseURI.html) property of the Node (in this case, the iframe). This property provides the absolute base URL of the document housing the node (iframe).
+When you're within an `iframe`, you can't employ the `location` attribute to access the top-level location. Using `top.location` exceeds the character limit. However, you can leverage the [baseURI](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/API/Document/baseURI.html) property of the Node (in this case, the `svg`). This property provides the absolute base URL of the document housing the node.
 
 As we cannot directly evalute the `baseURI` property, we can create a string that will contain the URL, close this string and initiate our second payload. This means the second payload resides both within the URL and outside the `xss` parameter, allowing us to bypass the character limit.
 
