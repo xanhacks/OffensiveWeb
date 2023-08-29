@@ -82,9 +82,23 @@ We know how to execute an XSS, our next challenge is to bypass the 30 characters
 26
 ```
 
-When you're within an `iframe`, you can't employ the `location` attribute to access the top-level location. Using `top.location` exceeds the character limit. However, you can leverage the [baseURI](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/API/Document/baseURI.html) property of the Node (in this case, the `svg`). This property provides the absolute base URL of the document housing the node.
+When you're within an `iframe`, you can't employ the `location` attribute to access the top-level location and you can't use the `top.location` attribute because it exceeds the character limit. However, you can leverage the [baseURI](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/API/Document/baseURI.html) property of the Node (in this case, the `svg`). This property provides the absolute base URL of the document housing the node.
 
-> Futhermore, you cannot access the `top` window context because the [Cross-Origin-Opener-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy) header is set to `same-origin` (cross-origin documents are not loaded in the same browsing context).
+{{< details "Iframe's sandbox & COOP" >}}
+Futhermore, you cannot access the `top` window context because of the [sandbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox) iframe's attribute. Also, you cannot access the `opener` attribute from other origin because the [Cross-Origin-Opener-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy) header is set to `same-origin` (cross-origin documents are not loaded in the same browsing context).
+
+```
+=> WORKING
+document.write("<iframe srcdoc='<script>alert(top.location)</script>'></iframe>")
+
+=> NOT WORKING (Blocked by sandbox attribute)
+document.write("<iframe sandbox='allow-scripts' srcdoc='<script>alert(top.location)</script>'></iframe>")
+
+=> Depends on Cross-Origin-Opener-Policy, here only same-origin
+document.write("<iframe sandbox='allow-scripts' srcdoc='<script>console.log(top.opener)</script>'></iframe>")
+```
+
+{{< /details >}}
 
 As we cannot directly evalute the `baseURI` property, we can create a string that will contain the URL, close this string and initiate our second payload. This means the second payload resides both within the URL and outside the `xss` parameter, allowing us to bypass the character limit.
 
