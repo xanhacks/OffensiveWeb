@@ -1,7 +1,7 @@
 ---
 title: "Apache"
-description: "Cheatsheet on Apache"
-lead: "Cheatsheet on Apache"
+description: "Cheatsheet on Apache HTTP"
+lead: "Cheatsheet on Apache HTTP"
 date: 2023-01-01T00:00:00+00:00
 lastmod: 2023-01-01T00:00:00+00:00
 draft: false
@@ -15,7 +15,7 @@ toc: true
 
 ## Apache
 
-Apache is a widely-used open-source web server software. It provides HTTP server functionality and supports customizable modules. It's maintained by the Apache Software Foundation.
+[Apache HTTP](https://httpd.apache.org/) is a widely-used open-source web server software. It provides HTTP server functionality and supports customizable modules. It's maintained by the Apache Software Foundation.
 
 ## Misconfiguration
 
