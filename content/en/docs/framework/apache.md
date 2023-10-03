@@ -15,6 +15,8 @@ toc: true
 
 ## Apache
 
+Apache is a widely-used open-source web server software. It provides HTTP server functionality and supports customizable modules. It's maintained by the Apache Software Foundation.
+
 ## Misconfiguration
 
 ### SSRF - ProxyPass & No ending slash
