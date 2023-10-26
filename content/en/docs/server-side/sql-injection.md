@@ -34,6 +34,15 @@ toc: true
 | `SUBSTR('abc',2,1)` | `SUBSTR('abc',2,1)` | `SUBSTR('abc',2,1)` |
 | `PG_SLEEP(4)`       | *Unknown*           | `SLEEP(4)`          |
 
+### Testing & Documentation
+
+- [PostgreSQL - Online](https://onecompiler.com/postgresql/) - [Docs](https://www.postgresql.org/docs/)
+- [MySQL - Online](https://onecompiler.com/mysql/) - [Docs](https://dev.mysql.com/doc/refman/8.0/en/)
+- [MariaDB - Online](https://onecompiler.com/mariadb/)
+- [Microsoft SQL Server - Online](https://onecompiler.com/sqlserver)
+- [Oracle - Online](https://livesql.oracle.com/)
+- SQLite3: run the command `sqlite3`
+
 ## Database enumeration
 
 ### MySQL
