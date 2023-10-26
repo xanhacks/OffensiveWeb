@@ -25,14 +25,15 @@ toc: true
 
 ### SQL Functions
 
-| PostgreSQL          | SQLite              | MySQL               |
-| ------------------- | ------------------- | ------------------- |
-| `'a'\|\|'b'`        | `'a'\|\|'b'`        | `'a' 'b'`           |
-| `POW(3,2)`          | `POW(3,2)`          | `POW(3,2)`          |
-| `CHR(65)`           | `CHAR(65)`          | `CHAR(65)`          |
-| `ASCII('A')`        | `UNICODE('A')`      | `ASCII('A')`        |
-| `SUBSTR('abc',2,1)` | `SUBSTR('abc',2,1)` | `SUBSTR('abc',2,1)` |
-| `PG_SLEEP(4)`       | *Unknown*           | `SLEEP(4)`          |
+| PostgreSQL           | SQLite              | MySQL               |
+| -------------------- | ------------------- | ------------------- |
+| `'a'\|\|'b'`         | `'a'\|\|'b'`        | `'a' 'b'`           |
+| `POW(3,2)`           | `POW(3,2)`          | `POW(3,2)`          |
+| `CHR(65)`            | `CHAR(65)`          | `CHAR(65)`          |
+| `ASCII('A')`         | `UNICODE('A')`      | `ASCII('A')`        |
+| `SUBSTR('abc',2,1)`  | `SUBSTR('abc',2,1)` | `SUBSTR('abc',2,1)` |
+| `PG_SLEEP(4)`        | *Unknown*           | `SLEEP(4)`          |
+| `SIMILAR TO`, `~`    | `REGEXP`, `GLOB`    | `REGEXP`            |
 
 ### Testing & Documentation
 
@@ -41,7 +42,7 @@ toc: true
 - [MariaDB - Online](https://onecompiler.com/mariadb/)
 - [Microsoft SQL Server - Online](https://onecompiler.com/sqlserver)
 - [Oracle - Online](https://livesql.oracle.com/)
-- SQLite3: run the command `sqlite3`
+- SQLite3: run the command `sqlite3` - [Docs](https://www.sqlite.org/docs.html)
 
 ## Database enumeration
 
