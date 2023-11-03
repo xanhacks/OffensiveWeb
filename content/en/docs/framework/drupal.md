@@ -52,4 +52,5 @@ toc: true
 
 ### Others
 
-- Drupal often use `$_REQUEST` instead of `$_GET` or `$_POST`, so you can switch a POST request to a GET request and vice versa.
+- Drupal frequently utilizes `$_REQUEST` over `$_GET` or `$_POST`, allowing you to alternate between POST and GET requests.
+- Drupal commonly caches web requests based on the `User-Agent`. Additionally, some URLs on HTML pages include the `Host` HTTP header. This can occasionally lead to cache poisoning and the generation of harmful URLs on the intended site.
