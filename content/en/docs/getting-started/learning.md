@@ -27,6 +27,7 @@ toc: true
 - [YesWeHack - Talent Development](https://blog.yeswehack.com/category/talent-development/)
 - [Synacktiv - Publications](https://www.synacktiv.com/en/publications)
 - [SonarSource - Security blog](https://www.sonarsource.com/blog/tag/security/)
+- [Seebug - Web Security](https://paper.seebug.org/category/web-security/)
 
 ## Vulnerability Feeds
 
