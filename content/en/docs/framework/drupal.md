@@ -26,7 +26,7 @@ toc: true
 - **Plugins** are located under `/modules/<module-name>/`.
 - **Themes** are located under `/themes/<theme-name>/`.
 
-[drupal_modules_path.txt](https://github.com/xanhacks/web-wordlists/blob/master/wordlists/drupal_modules_path.txt): List of all Drupal modules from www.drupal.org, sort by *Most installed*.
+[drupal_modules_path.txt](https://github.com/xanhacks/web-wordlists/): List of all Drupal modules from www.drupal.org, sort by *Most installed*.
 
 **Authentication:**
 
