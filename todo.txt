@@ -5,3 +5,4 @@
 - Others - Open Redirect
     - Add a parameters wordlist
     - Browser BCheck rules
+- Framework - Spring Boot
