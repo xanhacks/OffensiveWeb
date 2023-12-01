@@ -13,9 +13,15 @@ weight: 630
 toc: true
 ---
 
-## Todo
+## Definition
 
-todo
+**Browser caching** is a process where web browsers locally store webpage resources, like images and HTML files, to improve loading speed and reduce server load for subsequent visits to the same page.
+
+## Backward/Forward cache (BFcache)
+
+TODO
+
+## References
 
 - [Mizu -  Intigriti March 2023 - XSS Challenge](https://mizu.re/post/intigriti-march-2023-xss-challenge)
 - [Ark - SECCON CTF 2022 Quals writeup - Web Spanote](https://blog.arkark.dev/2022/11/18/seccon-en/#web-spanote)

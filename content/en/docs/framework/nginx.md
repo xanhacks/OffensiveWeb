@@ -15,7 +15,9 @@ toc: true
 
 ## Nginx
 
-### Passing Request Headers
+[Nginx](https://nginx.org/) is a high-performance web server, reverse proxy, and load balancer, known for its efficiency and low resource consumption.
+
+## Passing Request Headers
 
 By default, NGINX eliminates the header fields whose values are empty strings and redefines two header fields in proxied requests:
 
@@ -24,7 +26,7 @@ By default, NGINX eliminates the header fields whose values are empty strings an
 
 To change these setting, as well as modify other header fields, use the `proxy_set_header` directive.
 
-### Caching
+## Caching
 
 By default, NGINX Plus caches all responses to requests:
 
@@ -52,19 +54,19 @@ To change the request characteristics used in calculating the key, include the `
 proxy_cache_key "$host$request_uri$cookie_user";
 ```
 
-### Security
+## Security
 
-#### Basic Auth
+### Basic Auth
 
 - `auth_basic_user_file`: The path to the .htpasswd file that contain user/password pairs
 - Package `apache2-utils` or `httpd-tools`
 - Command `htpasswd -c /etc/apache2/.htpasswd user1`
 
-#### Filtering
+### Filtering
 
 - `allow` / `deny`: Allow or deny access from particular IP addresses / subnets
 
-#### Rate limit
+### Rate limit
 
 Limit of 1 request per minute based on IP address (binary mode for performance). [Learn more](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limiting-the-request-rate)
 

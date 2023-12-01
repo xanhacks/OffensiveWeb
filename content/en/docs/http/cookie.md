@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Cookies
+
+[Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) are small pieces of data stored on a user's device by a web browser, used to remember information about the user, such as login details, preferences, browsing activity...
+
 ## Cookies Attributes
 
 ### HttpOnly

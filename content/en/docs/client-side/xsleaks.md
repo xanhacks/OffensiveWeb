@@ -13,9 +13,12 @@ weight: 630
 toc: true
 ---
 
-## Todo
+## Definition
 
-todo
+**XS Leaks** (Cross-Site Leaks) enable attackers to leak sensitive information from a different origin by exploiting side-channel techniques, which observe the behavior of the browser rather than directly accessing the data. 
 
-- https://infosec.zeyu2001.com/2023/from-xs-leaks-to-ss-leaks
-- https://twitter.com/terjanq/status/1686701251080097792?t=LlxlNiIwGjCl0r2n1I7ujg&s=33
+## References
+
+- [XS-Leaks Wiki](https://xsleaks.dev/)
+- [From XS-Leaks to SS-Leaks Using object](https://infosec.zeyu2001.com/2023/from-xs-leaks-to-ss-leaks)
+- [XS-Leaks with Restrictive CSP](https://twitter.com/terjanq/status/1686701251080097792)

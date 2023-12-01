@@ -13,7 +13,7 @@ weight: 620
 toc: true
 ---
 
-## Definition
+## Spring Boot
 
 [Spring Boot](https://spring.io/) is a Java-based framework used to create stand-alone, production-grade Spring applications with minimal configuration. It simplifies the bootstrapping and development of new Spring applications by providing various capabilities like auto-configuration, standalone code, and opinionated defaults.
 

@@ -1,0 +1,7 @@
+- Client Side - SOME
+- Client Side - XSleaks
+- Framework - Spring boot
+- Programming - JavaScript
+- Others - Open Redirect
+    - Add a parameters wordlist
+    - Browser BCheck rules

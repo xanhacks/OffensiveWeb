@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Definition
+
+**Debugging** involves examining and testing software to understand its behavior, identify any anomalies or errors.
+
 ## Node.js
 
 ### VSCode

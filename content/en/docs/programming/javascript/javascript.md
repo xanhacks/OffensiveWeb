@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Javascript
+
+**JavaScript** is a dynamic, high-level programming language widely used for web development, enabling interactive and dynamic content on websites and applications, both on the client and server side.
+
 ## let and var
 
 ```js

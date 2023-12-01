@@ -13,10 +13,9 @@ weight: 620
 toc: true
 ---
 
-## Getting started
+## Definition
 
 **DOM Clobbering** is a vulnerability that originates from a naming collision between JavaScript variables and named HTML markups, where browsers replace pre-existing content of an undefined variable with an HTML element when the variable name and the element’s `name` (or `id`) attribute match.
-
 
 ## Attributes
 

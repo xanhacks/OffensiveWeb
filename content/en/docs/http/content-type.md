@@ -13,6 +13,9 @@ weight: 620
 toc: true
 ---
 
+## Content-Type
+
+[Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) is an HTTP header used to indicate the media type (MIME type) of the resource being sent in the response body, such as "text/html" for HTML documents or "application/json" for JSON data.
 
 ## Script loading Content-Type page
 

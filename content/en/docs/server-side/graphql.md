@@ -13,6 +13,13 @@ weight: 620
 toc: true
 ---
 
+## Definition
+
+[GraphQL](https://graphql.org/) is a query language for APIs and a runtime for executing those queries, enabling clients to request exactly the data they need and nothing more, often used to improve performance and flexibility over traditional REST APIs.
+
+- `query`: Read data
+- `mutation`: Write or delete data
+
 ## GraphQL Batching
 
 **GraphQL batching** allows clients to **combine multiple GraphQL queries into a single request**. Instead of making several individual requests, clients can bundle multiple queries together and send them to the server in one HTTP POST request. The server then processes these queries together and returns a batched response with the requested data.
@@ -79,3 +86,13 @@ if __name__ == "__main__":
     brute_force()
 ```
 {{< /details >}}
+
+## Inputs/Outputs scope
+
+Injecting extra parameters can result in unauthorized activities, such as:
+- In **queries**, it can lead to accessing additional information, like obtaining password hashes or password reset tokens.
+- In **mutations**, it might involve altering parameters, like setting an `isAdmin` field to `true`.
+
+## Tools
+
+- [GraphQL Voyager](https://graphql-kit.com/graphql-voyager/): Represent any GraphQL API as an interactive graph.

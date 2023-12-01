@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Definition
+
+**Cross-Site Scripting (XSS)** is a security vulnerability that allows attackers to inject malicious scripts into webpages viewed by other users.
+
 ## Basic payloads
 
 - [Cross-site scripting (XSS) cheat sheet - PortSwigger](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet): List of XSS payloads.

@@ -8,10 +8,14 @@ draft: false
 images: []
 menu:
   docs:
-    parent: "javascript"
+    parent: "others"
 weight: 620
 toc: true
 ---
+
+## Definition
+
+**Prototype pollution** is a security vulnerability in JavaScript where an attacker modifies a prototype of a standard object, potentially leading to unintended side effects or behavior in applications that rely on those objects.
 
 ## Payloads
 

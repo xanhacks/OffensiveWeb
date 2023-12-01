@@ -13,6 +13,6 @@ weight: 610
 toc: true
 ---
 
-## Todo
+## Definition
 
-todo
+**Service Workers** are JS scripts that run in the background of a web browser, separate from a web page, enabling features like push notifications and background sync, and providing offline support for web applications.

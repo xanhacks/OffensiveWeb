@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Definition
+
+**Server-Side Request Forgery (SSRF)** enables an attacker to induce a server to make requests to internal or external resources, potentially accessing or manipulating data and systems that are not directly accessible to the attacker.
+
 ## URI Scheme
 
 **URI Scheme Lists:** gopher, tftp, http, https, ldap, ftp, dict, ssh2, file, ogg, expect, imap, smtp, telnet, ...

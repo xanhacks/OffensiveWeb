@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Python
+
+[Python](https://www.python.org/) is a high-level, interpreted programming language known for its simplicity and readability.
+
 ## Modules
 
 ### os.path

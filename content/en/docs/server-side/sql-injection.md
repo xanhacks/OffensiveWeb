@@ -13,6 +13,10 @@ weight: 620
 toc: true
 ---
 
+## Definition
+
+**SQL injection** allows attackers to execute malicious SQL queries through user input areas, potentially accessing, modifying, or deleting data.
+
 ## DMBS Identification
 
 ### Version

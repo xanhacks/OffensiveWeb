@@ -13,7 +13,7 @@ weight: 620
 toc: true
 ---
 
-## Introduction
+## Definition
 
 The [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window) interface represents a window containing a DOM document; the document property points to the DOM document loaded in that window.
 
