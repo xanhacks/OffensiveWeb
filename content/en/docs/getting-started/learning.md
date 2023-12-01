@@ -33,6 +33,7 @@ toc: true
 
 - [Github Advisory Database (GHSA)](https://github.com/advisories?query=type%3Areviewed)
 - [HackerOne - Disclosed reports](https://hackerone.com/hacktivity)
+- [CVE Half-Day Watcher](https://github.com/Aqua-Nautilus/CVE-Half-Day-Watcher)
 
 ## Challenges
 
@@ -40,7 +41,8 @@ toc: true
 - [HackTheBox - Web challenges](https://app.hackthebox.com/challenges)
 - [Root-Me - Server/Client side](https://www.root-me.org/)
 - [CTFTime - Upcomming CTFs](https://ctftime.org/event/list/upcoming)
-- [HeroCTF - self promotion :')](https://github.com/HeroCTF/)
+- [HeroCTF - Challenges & Write-ups of past editions](https://github.com/HeroCTF/)
+- [Flag4jobs - Challenges on real-world use cases](https://app.flag4jobs.com/)
 
 ## Books
 
