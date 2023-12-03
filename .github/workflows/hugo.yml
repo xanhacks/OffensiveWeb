@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  WEBSITE_URL: https://www.offensiveweb.com
+  WEBSITE_URL: https://offensiveweb.com
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
