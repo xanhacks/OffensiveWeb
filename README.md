@@ -2,7 +2,7 @@
 
 OffensiveWeb aims to offer clear and comprehensive information on various web security concepts, such as vulnerability research, fuzzing and security measures.
 
-- [https://offensiveweb.com/](https://offensiveweb.com/)
+- [https://offensiveweb.com/](https://www.offensiveweb.com/)
 
 ## Description
 

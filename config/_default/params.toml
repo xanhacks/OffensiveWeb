@@ -12,7 +12,7 @@ description = "Offensive Web is a documentation website about security research,
 ## Open Graph
 images = ["doks.png"]
 ogLocale = "en_US"
-domainTLD = "offensiveweb.com"
+domainTLD = "www.offensiveweb.com"
 titleHome = "Doks Theme"
 
 ## Twitter Cards

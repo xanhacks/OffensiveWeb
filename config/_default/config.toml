@@ -1,4 +1,4 @@
-baseurl = "https://offensiveweb.com/"
+baseurl = "https://www.offensiveweb.com/"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
