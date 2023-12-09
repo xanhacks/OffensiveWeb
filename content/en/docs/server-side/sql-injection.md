@@ -61,6 +61,7 @@ SELECT GROUP_CONCAT(column_name,',') FROM information_schema.columns WHERE table
 ### PostgreSQL
 
 ```
+SELECT datname FROM pg_database;
 SELECT string_agg(table_name,',') FROM information_schema.tables;
 SELECT string_agg(column_name,',') FROM information_schema.columns WHERE table_name = 'users';
 ```
