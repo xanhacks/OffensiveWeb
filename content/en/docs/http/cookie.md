@@ -45,10 +45,29 @@ The `SameSite` attribute controls when cookies are sent to the server based on t
 
 > More at [MDN - SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) and [Article - SameSite confusion](https://jub0bs.com/posts/2021-01-29-great-samesite-confusion/).
 
+## Cookies scope on different ports
+
+This three domains will share the same cookies even if `SameSite` is `Strict`:
+
+- http://example.com
+- http://example.com:5555
+- https://example.com
+
 ## Cookie Ordering
 
 - Arranged alphabetically based on their names
 - Sorted by their paths in alphabetical sequence (root path `/` is first)
+
+## Cookie Jar Overflow - Overwriting HttpOnly cookies
+
+```js
+for (let i = 0; i < 700; i++) {
+    document.cookie = `cookie${i}=${i}`;
+}
+document.cookie = "<httpOnlyCookie>=overwritten by JavaScript";
+```
+
+- [_demo/cookie.php](https://github.com/Sjord/Sjord.github.io/blob/master/_demo/cookie.php)
 
 ## Set-cookie from Javascript
 

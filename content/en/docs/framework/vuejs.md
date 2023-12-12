@@ -39,3 +39,11 @@ h('div', { innerHTML: this.userProvidedHtml })
 ```
 
 > Source: [VueJS - Security](https://vuejs.org/guide/best-practices/security.html)
+
+## vue-router
+
+### Open redirect using `///`
+
+- Example: `https://example.com///attacker.com`
+- Details: [vuejs/vue-router/pull/3652](https://github.com/vuejs/vue-router/pull/3652)
+- Version: <= 3.5.2

