@@ -54,6 +54,36 @@ To change the request characteristics used in calculating the key, include the `
 proxy_cache_key "$host$request_uri$cookie_user";
 ```
 
+### Cache Poisoning
+
+```
+# [...]
+
+http {
+        # [...]
+        proxy_cache_path /run/nginx/cache keys_zone=stat_cache:10m inactive=10s;
+
+        server {
+            listen 80 default_server;
+            listen [::]:80 default_server;
+
+            server_name _;
+
+            location = /stats {
+                proxy_cache stat_cache;
+                proxy_cache_key "$arg_period";
+                proxy_cache_valid 200 15s;
+
+                proxy_pass http://127.0.0.1:3001;
+            }
+        }
+}
+```
+
+The `period` GET parameter serves as the cache key. By utilizing a commonly known value such as `1m`, you can contaminate the cache and introduce an additional malicious value.
+
+- Example: `http://localhost/stats?period=1m&period=<PAYLOAD>`
+
 ## Security
 
 ### Basic Auth
