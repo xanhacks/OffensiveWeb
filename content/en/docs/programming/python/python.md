@@ -8,8 +8,8 @@ draft: false
 images: []
 menu:
   docs:
-    parent: "programming"
-weight: 620
+    parent: "python"
+weight: 600
 toc: true
 ---
 
@@ -24,6 +24,7 @@ toc: true
 ```python
 os.path.join("uploads/", "flag.txt")  # uploads/flag.txt
 os.path.join("uploads/", "/flag.txt") # /flag.txt
+os.path.join("uploads/", "flag.txt")  # uploads/../flag.txt
 ```
 
 ### re
