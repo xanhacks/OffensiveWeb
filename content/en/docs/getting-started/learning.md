@@ -33,6 +33,7 @@ toc: true
 
 - [Github Advisory Database (GHSA)](https://github.com/advisories?query=type%3Areviewed)
 - [HackerOne - Disclosed reports](https://hackerone.com/hacktivity)
+- [Huntr - Hacktivity](https://huntr.com/bounties/hacktivity/)
 - [CVE Half-Day Watcher](https://github.com/Aqua-Nautilus/CVE-Half-Day-Watcher)
 
 ## Challenges
