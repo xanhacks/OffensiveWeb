@@ -15,9 +15,14 @@ toc: true
 
 ## Cross-Origin Read Blocking (CORB)
 
-[Cross-Origin Read Blocking](https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md) (CORB) is a security feature designed to mitigate the risk of certain types of cross-origin information leaks and attacks, particularly speculative side-channel attacks like Spectre. It does so by blocking web pages from loading cross-origin responses that contain sensitive information into inappropriate contexts.
+[Cross-Origin Read Blocking](https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md) (CORB) is a security feature designed to mitigate the risk of certain types of cross-origin information leaks and attacks.
 
 This is a measure beyond what is enforced by the Same-Origin Policy (SOP) and Cross-Origin Resource Sharing (CORS).
+
+CORB mitigates the following attack vectors:
+
+1. **Cross-Site Script Inclusion (XSSI)**: XSSI is the technique of pointing the `<script>` tag at a target resource which is not JavaScript, and observing some side effects when the resulting resource is interpreted as JavaScript. CORB prevents this class of attacks, because a CORB-protected resource will be blocked from ever being delivered to a cross-site `<script>` element.
+2. **Speculative Side Channel Attack (e.g. Spectre)**: An attacker may use an `<img src="https://example.com/secret.json">` element to pull a cross-site secret into the process where the attacker's JavaScript runs, and then use a speculative side channel attack (e.g. Spectre) to read the secret. CORB can prevent this class of attacks when used in tandem with [Site Isolation](https://www.chromium.org/Home/chromium-security/site-isolation/) (ensures that pages from different websites are always put into different processes, each running in a sandbox that limits what the process is allowed to do), by preventing the JSON resource from being present in the memory of a process hosting a cross-site page.
 
 ### How CORB Works
 
