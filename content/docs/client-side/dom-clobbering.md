@@ -54,9 +54,7 @@ console.log(fm.action);   // http://localhost/login
 List of tags which supports the name attribute:
 - `embed`, `form`, `iframe`, `image`, `img`, `object`
 
-{{< alert icon="👉" >}}
-**document.fm** (name=fm) is defined but NOT **document.hd** (id=hd).
-{{< /alert >}}
+> **document.fm** (name=fm) is defined but NOT **document.hd** (id=hd).
 
 {{< details "Element name fuzzing - Proof of Concept" >}}
 ```js
@@ -163,9 +161,7 @@ console.log(link.add == link[1]); // true
 </script>
 ```
 
-{{< alert icon="👉" >}}
-**HTMLCollection** only works on Chromium based browser (not Firefox).
-{{< /alert >}}
+> **HTMLCollection** only works on Chromium based browser (not Firefox).
 
 You can also create an array of values:
 
@@ -197,9 +193,7 @@ console.log(login.user.name.value);      // xanhacks
 
 ### Infinite levels deep
 
-{{< alert icon="👉" >}}
-**iframe** allows you to clobber as many levels as you want. However, iframes are often blocked by HTML filters.
-{{< /alert >}}
+> **iframe** allows you to clobber as many levels as you want. However, iframes are often blocked by HTML filters.
 
 This simple example does **not** work because the iframe takes some time to render:
 

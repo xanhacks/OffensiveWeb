@@ -2,58 +2,68 @@
 <section class="section container-fluid mt-n3 pb-3">
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
-      <h1 class="mt-0">{{ .Title }}</h1>
+      <h1>{{ .Title }}</h1>
     </div>
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
-      <a class="btn btn-primary btn-lg px-4 mb-2" href="/docs/{{ if .Site.Params.options.docsVersioning }}{{ .Site.Params.docsVersion }}/{{ end }}getting-started/introduction/" role="button">Get Started</a>
-      <p class="meta">Contribute to this project on <a href="https://github.com/xanhacks/OffensiveWeb/">GitHub</a>.</p>
+      <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}getting-started/introduction/" role="button">Get Started</a>
+      {{ .Content }}
     </div>
   </div>
 </section>
 {{ end }}
 
 {{ define "sidebar-prefooter" }}
-<section class="section section-sm">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-5">
-        <h2 class="h4">Service Worker</h2>
-        <p>A Service Worker runs in the background of a web application, it provides various features such as caching, push notifications, and offline functionality.</p>
-      </div>
-      <div class="col-lg-5">
-        <h2 class="h4">Browser Cache</h2>
-        <p>Temporary storage location on a user's device where web browsers store website data, to improve the user's browsing experience by reducing page load times.</p>
-      </div>
-      <div class="col-lg-5">
-        <h2 class="h4">Prototype Pollution</h2>
-        <p>Manipulate the prototype of an object in a JavaScript application, leading to unexpected behavior and potential compromise of the application.</p>
-      </div>
-    </div>
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-5">
-        <h2 class="h4">Request Smuggling</h2>
-        <p>Manipulate the HTTP requests and responses in a way that can cause a web server to interpret them differently than the client does.</p>
-      </div>
-      <div class="col-lg-5">
-        <h2 class="h4">Server-Side Request Forgery</h2>
-        <p>Allow an attacker to make unauthorized requests to internal or external network resources on behalf of the vulnerable server or application.</p>
-      </div>
-      <div class="col-lg-5">
-        <h2 class="h4">Cross-Site Scripting</h2>
-        <p>Allow an attacker to inject malicious code into a web page viewed by other users and take unauthorized actions on their behalf.</p>
-      </div>
-    </div>
+  {{ if site.Params.doks.backgroundDots -}}
+  <div class="d-flex justify-content-start">
+    <div class="bg-dots"></div>
   </div>
-</section>
+  {{ end -}}
+  {{ if eq $.Site.Language.LanguageName "English" }}
+  <section class="section section-sm">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-5">
+          <h2 class="h4">Service Worker</h2>
+          <p>A Service Worker runs in the background of a web application, it provides various features such as caching, push notifications, and offline functionality.</p>
+        </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Browser Cache</h2>
+          <p>Temporary storage location on a user's device where web browsers store website data, to improve the user's browsing experience by reducing page load times.</p>
+        </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Prototype Pollution</h2>
+          <p>Manipulate the prototype of an object in a JavaScript application, leading to unexpected behavior and potential compromise of the application.</p>
+        </div>
+      </div>
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-5">
+          <h2 class="h4">Request Smuggling</h2>
+          <p>Manipulate the HTTP requests and responses in a way that can cause a web server to interpret them differently than the client does.</p>
+        </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Server-Side Request Forgery</h2>
+          <p>Allow an attacker to make unauthorized requests to internal or external network resources on behalf of the vulnerable server or application.</p>
+        </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Cross-Site Scripting</h2>
+          <p>Allow an attacker to inject malicious code into a web page viewed by other users and take unauthorized actions on their behalf.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
 {{ end }}
 
 {{ define "sidebar-footer" }}
-<section class="section section-sm container-fluid">
+{{ if site.Params.doks.sectionFooter -}}
+<section class="section section-md container-fluid bg-light">
   <div class="row justify-content-center text-center">
-    <div class="col-lg-9">
-      {{- .Content -}}
+    <div class="col-lg-7">
+      <h2 class="mt-2">Start building with Doks today</h2>
+      <a class="btn btn-primary rounded-pill px-4 my-2" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}prologue/introduction/" role="button">{{ i18n "get-started" }}</a>
     </div>
   </div>
 </section>
+{{ end -}}
 {{ end }}

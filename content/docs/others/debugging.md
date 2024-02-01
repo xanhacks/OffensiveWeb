@@ -45,7 +45,7 @@ Choose the process you want to debug. Then, the `Run and Debug` window will appe
 The Node debugger supports restarting execution at a stack frame. See [docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_restart-frame).
 
 {{< details "Tutorial - GIF" >}}
-![Restart frame](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/restartFrame.gif)
+<!-- ![Restart frame](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/restartFrame.gif) -->
 {{< /details >}}
 
 #### Conditional breakpoint
@@ -53,7 +53,7 @@ The Node debugger supports restarting execution at a stack frame. See [docs](htt
 Conditional breakpoints are breakpoints that only pause when an expression returns a truthy value. See [docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_conditional-breakpoints).
 
 {{< details "Tutorial - GIF" >}}
-![Conditional breakpoint](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/conditional-breakpoint.gif)
+<!-- ![Conditional breakpoint](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/conditional-breakpoint.gif) -->
 {{< /details >}}
 
 #### Logpoints
@@ -61,7 +61,7 @@ Conditional breakpoints are breakpoints that only pause when an expression retur
 Log a message or value when code hits a certain location. See [docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_logpoints).
 
 {{< details "Tutorial - GIF" >}}
-![Logpoints](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/logpoint-breakpoint.gif)
+<!-- ![Logpoints](https://code.visualstudio.com/assets/docs/nodejs/nodejs-debugging/logpoint-breakpoint.gif) -->
 {{< /details >}}
 
 ### The arguments object
