@@ -21,6 +21,10 @@ CORP is an additional layer of protection beyond the default same-origin policy.
 
 > As this policy is expressed via a response header, the actual request is not prevented. Rather, the browser prevents the result from being leaked by stripping the response body.
 
+{{< callout context="note" title="Summary" icon="info-circle" >}}
+You can think of CORP as similar to CORS but specifically tailored for `<script>` and `<img>` elements. It allows you to decide whether your resources can be loaded based on criteria such as `same-site`, `same-origin`, or `cross-origin`.
+{{< /callout >}}
+ 
 ## Usage
 
 - `Cross-Origin-Resource-Policy: same-site`: Only requests from the same Site can read the resource.
