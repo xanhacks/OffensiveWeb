@@ -54,10 +54,12 @@ console.log(fm.action);   // http://localhost/login
 List of tags which supports the name attribute:
 - `embed`, `form`, `iframe`, `image`, `img`, `object`
 
-> **document.fm** (name=fm) is defined but NOT **document.hd** (id=hd).
+{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+**document.fm** (name=fm) is defined but NOT **document.hd** (id=hd).
+{{< /callout >}}
 
 {{< details "Element name fuzzing - Proof of Concept" >}}
-```js
+```html
 <body><script>
 const tags = ["a", "abbr", "acronym", "address", "applet", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "bgsound", "big", "blink", "blockquote", "body", "br", "button", "canvas", "caption", "center", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "dir", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "font", "footer", "form", "frame", "frameset", "h1", "head", "header", "hgroup", "hr", "html", "i", "iframe", "image", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "marquee", "menu", "menuitem", "meta", "meter", "nav", "nobr", "noembed", "noframes", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "picture", "plaintext", "portal", "pre", "progress", "q", "rb", "rp", "rt", "rtc", "ruby", "s", "samp", "script", "section", "select", "slot", "small", "source", "spacer", "span", "strike", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr", "xmp"];
 
@@ -161,7 +163,9 @@ console.log(link.add == link[1]); // true
 </script>
 ```
 
-> **HTMLCollection** only works on Chromium based browser (not Firefox).
+{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+**HTMLCollection** only works on Chromium based browser (not Firefox).
+{{< /callout >}}
 
 You can also create an array of values:
 
@@ -193,7 +197,9 @@ console.log(login.user.name.value);      // xanhacks
 
 ### Infinite levels deep
 
-> **iframe** allows you to clobber as many levels as you want. However, iframes are often blocked by HTML filters.
+{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+**iframe** allows you to clobber as many levels as you want. However, iframes are often blocked by HTML filters.
+{{< /callout >}}
 
 This simple example does **not** work because the iframe takes some time to render:
 
@@ -209,7 +215,7 @@ console.log(page.link); // undefined
 
 To make things works, you can add some delay by adding a CSS import:
 
-```
+```html
 <iframe name="page"
 	srcdoc="<a id='link' href='xanhacks'></a>">
 </iframe>

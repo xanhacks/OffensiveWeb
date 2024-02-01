@@ -15,7 +15,9 @@ toc: true
 
 ## OffensiveWeb
 
-> OffensiveWeb is intended for educational and informational purposes only, and should not be used for any illegal or malicious activities.
+{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+OffensiveWeb is intended for educational and informational purposes only, and should not be used for any illegal or malicious activities.
+{{< /callout >}}
 
 Welcome to **OffensiveWeb** ! Our goal is to provide clear and comprehensive information about web security concepts that can often be difficult to understand. More specifically, you will find resources related to web security, vulnerability research/analysis, fuzzing and also security measures to overcome various types of vulnerabilities.
 
