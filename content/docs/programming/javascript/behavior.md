@@ -37,3 +37,42 @@ for (let i = 0; i < 0x10FFFF; i++) {
 7831 ẗ 1 T̈ 2
 ...
 ```
+
+## String Replace
+
+### First Occurrence Replace
+
+When using the `replace` function, only the first occurrence will be replaced by default:
+
+```js
+"<><script>alert()</script>".replace("<", "").replace(">", "");
+// "<script>alert()</script>"
+```
+
+### Empty Pattern
+
+If the pattern is an empty string, the replacement is prepended to the start of the string:
+
+```js
+"xxx".replace("", "_"); // "_xxx"
+```
+
+### Replacement String
+
+The [replacement string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement) can include the following special replacement patterns:
+
+| Pattern   | Inserts                                                |
+|-----------|--------------------------------------------------------|
+| `$$`      | Inserts a "$".                                         |
+| `$&`      | Inserts the matched substring.                         |
+| ``$` ``   | Inserts the portion of the string that precedes the matched substring. |
+| `$'`      | Inserts the portion of the string that follows the matched substring. |
+| `$n`      | Inserts the nth (1-indexed) capturing group where n is a positive integer less than 100. |
+| `$<Name>` | Inserts the named capturing group where Name is the group name. |
+
+Here is some examples:
+
+```js
+"abcdfoo".replace(/abcd/, "$'"); // "foofoo"
+"abcdfoo".replace(/foo/, "$`"); // "abcdabcd"
+```
