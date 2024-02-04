@@ -173,7 +173,7 @@ https://FUZZxanhacks.xyz
 => FUZZ: 9, 10, 13, 47, 64, 92, 173, 847, 6155, 6156, ... a lot
 ```
 
-> Note: `<a href="https://///////xanhacks.xyz">link</a>` goes to `https://xanhacks.xyz`.
+{{< callout note  >}} Note: `<a href="https://///////xanhacks.xyz">link</a>` goes to `https://xanhacks.xyz`. {{< /callout >}}
 
 {{< details "URLs Fuzzing script" >}}
 ```html
