@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.122.0
+    using: "node20"
     steps:
       - name: Install Hugo CLI
         run: |
@@ -55,10 +56,11 @@ jobs:
           path: ./public
 
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ env.WEBSITE_URL }}
-    runs-on: ubuntu-latest
+    using: "node20"
     needs: build
     steps:
       - name: Deploy to GitHub Pages
