@@ -47,8 +47,7 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: |
-          hugo --minify --baseURL "${{ env.WEBSITE_URL }}"
+        run: "npm run build"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
