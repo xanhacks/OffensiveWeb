@@ -34,3 +34,44 @@ CORB works by examining the MIME type of cross-origin responses and blocking tho
 - **Blocking Strategy**: If CORB decides to block a response, it does so by stripping the response body, effectively preventing the requesting JavaScript from reading the content. However, the request itself is not blocked, the server still receives the request and sends a response. The difference is that the JavaScript on the requesting site cannot access the response's body.
 - **Context of the Request**: CORB's decision to block a response also considers the context in which the request was made. For example, a script element trying to load JSON data might be blocked, as scripts are not supposed to load such data types directly.
 - **Interaction with Other Security Features**: Although CORB operates independently, its effectiveness is complemented by other security measures such as the `X-Content-Type-Options: nosniff` header, which prevents the browser from sniffing the MIME type of a response. This ensures that incorrectly labeled resources are not executed in an unintended context.
+
+## Blocking
+
+The response will be stripped if:
+
+1. `X-Content-Type-Options` is set to `nosniff` and the `Content-Type` is either `HTML`, `XML` (except `image/svg+xml`), `JSON` or `text/plain`.
+2. Reponse status is `206` and the `Content-Type` is either `HTML`, `XML` (except `image/svg+xml`) or `JSON`.
+3. The sniffed the response body is either `HTML`, `XML` (except `image/svg+xml`) or `JSON`.
+
+## Examples
+
+For the following examples, the client-site code will stay the same:
+
+```html
+<script src="http://localhost:5555"></script>
+```
+
+### nosniff & text/plain
+
+In the following case, the response will be stripped by CORB because we will be in the first case as `X-Content-Type-Options` is set to `nosniff` and the `Content-Type` is set to `text/plain`.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "alert(1337);" 
+
+@app.after_request
+def add_response_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Content-Type'] = 'text/plain; charset=utf-8'
+    return response
+
+if __name__ == '__main__':
+    app.run(port=5555)
+```
+
+### 206 & application/json

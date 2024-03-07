@@ -19,8 +19,6 @@ The [X-Content-Type-Options](https://developer.mozilla.org/en-US/docs/Web/HTTP/H
 
 ## Nosniff
 
-```
-X-Content-Type-Options: nosniff
-```
+`X-Content-Type-Options: nosniff` only apply request-blocking due to nosniff for request destinations of "script" and "style". However, it also enables Cross-Origin Read Blocking (CORB) protection for HTML, TXT, JSON and XML files (excluding SVG image/svg+xml).
 
-`X-Content-Type-Options` only apply request-blocking due to nosniff for request destinations of "script" and "style". However, it also enables Cross-Origin Read Blocking (CORB) protection for HTML, TXT, JSON and XML files (excluding SVG image/svg+xml).
+You can find more details on the [CORB](/docs/http/cross-origin-read-blocking-corb/) page.

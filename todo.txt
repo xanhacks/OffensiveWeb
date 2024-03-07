@@ -6,3 +6,5 @@
     - Add a parameters wordlist
     - Browser BCheck rules
 - Framework - Spring Boot
+
+- Fix images in other/debug
