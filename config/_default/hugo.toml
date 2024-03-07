@@ -1,6 +1,6 @@
 title = "OffensiveWeb"
 baseurl = "https://www.offensiveweb.com"
-canonifyURLs = false
+canonifyURLs = true
 disableAliases = true
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
