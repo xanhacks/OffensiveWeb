@@ -17,6 +17,10 @@ toc: true
 
 [Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) is an HTTP header used to indicate the media type (MIME type) of the resource being sent in the response body, such as "text/html" for HTML documents or "application/json" for JSON data.
 
+## Content-Type that can be used for XSS
+
+- [Content-Type that can be used for XSS](https://github.com/BlackFan/content-type-research/blob/master/XSS.md)
+
 ## Script loading Content-Type page
 
 What happens if a `script` tag load a javascript file from a page that returns `Content-Type: font/ttf`.
