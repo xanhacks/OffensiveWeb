@@ -51,6 +51,8 @@ toc: true
 - [vary](https://www.npmjs.com/package/vary):
 {{< /details >}}
 
+- [Express - Security updates](https://expressjs.com/en/advanced/security-updates.html)
+
 ## Query string parsing
 
 | URL                       | Content of request.query.foo in code                |
