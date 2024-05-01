@@ -100,3 +100,4 @@ i.Event.prototype.flags="-alert(location.href)"
 
 **References:**
 - [Arbitrary Parentheses-less XSS against strict CSP policies](https://terjanq.medium.com/arbitrary-parentheses-less-xss-e4a1cf37c13d)
+- [XSS with CSP bypass leads to diagrams backdoor in jgraph/drawio](https://huntr.com/bounties/4c1c5db5-210f-4d7e-8380-b95f88fdb78d)
