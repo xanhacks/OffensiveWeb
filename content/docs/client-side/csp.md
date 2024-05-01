@@ -36,9 +36,9 @@ if (isset($_GET["xss"])) echo $_GET["xss"];
 ```
 
 Maximum parameters by default in PHP:
-- `$_GET`: 1000 parameters
-- `$_POST`: 1000 parameters
-- `$_FILES`: 20 files
+- `$_GET`: 1000 parameters - [PoC](https://gist.github.com/frevadiscor/e27177003e0f86f8b381e36d320b22d2)
+- `$_POST`: 1000 parameters - [PoC](https://gist.github.com/frevadiscor/4ca1ecde477dba288176ff5fc674de17)
+- `$_FILES`: 20 files - [PoC](https://gist.github.com/frevadiscor/855b960d41f4b8cf3b31450414ea5b84)
 
 ```python
 # ------------------[ <= 1000 parameters ]------------------
