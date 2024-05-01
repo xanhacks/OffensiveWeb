@@ -17,6 +17,10 @@ toc: true
 
 Parsing refers to the process of analyzing and converting input data into a more usable format. While essential for data processing, parsing can introduce security mistakes.
 
+## HTTP
+
+- [Exploiting HTTP Parsers Inconsistencies](https://rafa.hashnode.dev/exploiting-http-parsers-inconsistencies)
+
 ## IPv6
 
 - [Exploring IPv6 Zone Identifier](https://blog.slonser.info/posts/ipv6-zones/)
