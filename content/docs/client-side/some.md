@@ -2,8 +2,8 @@
 title: "Same Origin Method Execution"
 description: "Cheatsheet on Same-Origin-Method-Execution (SOME)"
 lead: "Cheatsheet on Same-Origin-Method-Execution (SOME)"
-date: 2020-10-06T08:49:31+00:00
-lastmod: 2020-10-06T08:49:31+00:00
+date: 2023-01-01T00:00:00+00:00
+lastmod: 2023-01-01T00:00:00+00:00
 draft: false
 images: []
 menu:

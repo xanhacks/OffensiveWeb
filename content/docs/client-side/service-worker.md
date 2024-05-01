@@ -2,8 +2,8 @@
 title: "Service Worker"
 description: "Regularly update the installed npm packages to keep your Doks website stable, usable, and secure."
 lead: "Regularly update the installed npm packages to keep your Doks website stable, usable, and secure."
-date: 2020-11-12T13:26:54+01:00
-lastmod: 2020-11-12T13:26:54+01:00
+date: 2023-01-01T00:00:00+00:00
+lastmod: 2023-01-01T00:00:00+00:00
 draft: false
 images: []
 menu:
