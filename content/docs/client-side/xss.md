@@ -192,6 +192,27 @@ console.log(valids);
 > Inspired by the book *Javascript for hackers - Gareth Heyes*.
 {{< /details >}}
 
+## Mutation XSS
+
+- [Bypassing Your Defense: Mutation XSS](https://aszx87410.github.io/beyond-xss/en/ch2/mutation-xss/)
+- [mXSS cheatsheet](https://sonarsource.github.io/mxss-cheatsheet/)
+
+
+The following HTML code will be "fixed" by the browser at runtime. Original HTML:
+
+```html
+<table><h1>hello</h1></table>
+```
+
+Displayed HTML:
+
+```html
+<h1>hello</h1>
+<table></table>
+```
+
+This behavior of "HTML strings being changed by the browser during rendering" is called mutation. And the XSS achieved by exploiting this behavior is naturally called mutation XSS or mXSS.
+
 ## DOS
 
 ### Cookie bombing
