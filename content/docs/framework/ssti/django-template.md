@@ -1,7 +1,7 @@
 ---
-title: "Tera"
-description: "Cheatsheet on Tera"
-lead: "Cheatsheet on Tera"
+title: "Django Template"
+description: "Cheatsheet on Django Template Engine"
+lead: "Cheatsheet on Django Template Engine"
 date: 2023-01-01T00:00:00+00:00
 lastmod: 2023-01-01T00:00:00+00:00
 draft: false
