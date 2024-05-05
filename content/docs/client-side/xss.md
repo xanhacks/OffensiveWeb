@@ -20,6 +20,7 @@ toc: true
 ## Basic payloads
 
 - [Cross-site scripting (XSS) cheat sheet - PortSwigger](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet): List of XSS payloads.
+- [Tiny XSS Payloads](https://tinyxss.terjanq.me/)
 
 ```html
 <script>alert()</script>

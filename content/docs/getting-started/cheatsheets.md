@@ -17,6 +17,7 @@ toc: true
 
 - [mXSS cheatsheet](https://sonarsource.github.io/mxss-cheatsheet/)
 - [Cross-site scripting (XSS) cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
+- [Tiny XSS Payloads](https://tinyxss.terjanq.me/)
 
 ## SQL Injection
 
