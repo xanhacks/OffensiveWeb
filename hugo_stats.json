@@ -381,6 +381,7 @@
       "http",
       "httponly",
       "in-scope",
+      "include-template",
       "infinite-levels-deep",
       "information-leakage",
       "innerhtml-vs-innertext",

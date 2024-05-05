@@ -21,7 +21,7 @@ Django ships built-in backends for its own template system, creatively called th
 
 Basic example of DTL:
 
-```html
+```jinja
 My first name is {{ first_name }}. My last name is {{ last_name }}.
 {{ my_dict.key }}
 {{ my_object.attribute }}
@@ -62,15 +62,17 @@ DTL vs Jinja2:
 
 ## Built-in
 
+- List of all tags and filters: [Django - Built-in template tags and filters](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/)
+
 ### Debug
 
-```js
+```jinja
 {% debug %}
 ```
 
 ### CSRF
 
-```js
+```jinja
 {% csrf_token %}
 ```
 
@@ -78,13 +80,17 @@ DTL vs Jinja2:
 
 When `messages` is present in the template context and `CookieStorage` is being used we can walk through attributes of `messages` to access app's `SECRET_KEY`:
 
-```js
+```jinja
 {{ messages.storages.0.signer.key }}
 ```
 
-### Filters
+### Include Template
 
-List of all filters: [Built-in filter reference](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#built-in-filter-reference)
+You can include other templates in your page:
+
+```jinja
+{% include 'admin/base.html' %}
+```
 
 ### XSS
 
@@ -92,7 +98,7 @@ List of all filters: [Built-in filter reference](https://docs.djangoproject.com/
 - `escape`: Escapes a string's HTML (HTML entity).
 - `force_escape`: Applies HTML escaping to a string.
 
-```html
+```jinja
 {% autoescape off %}
     {{ message }}
 {% endautoescape %}
