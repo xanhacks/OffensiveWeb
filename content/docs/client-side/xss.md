@@ -55,6 +55,7 @@ alert`1`
 <!-- Alternate calls -->
 ["XSS"].map(alert)
 \u0061\u006C\u0065\u0072\u0074("XSS")
+alert?.()
 ```
 
 ### Variable self
