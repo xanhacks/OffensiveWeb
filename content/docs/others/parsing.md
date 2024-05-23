@@ -24,3 +24,7 @@ Parsing refers to the process of analyzing and converting input data into a more
 ## IPv6
 
 - [Exploring IPv6 Zone Identifier](https://blog.slonser.info/posts/ipv6-zones/)
+
+## Email
+
+- [Old new email attacks](https://blog.slonser.info/posts/email-attacks/)
