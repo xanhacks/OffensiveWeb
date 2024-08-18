@@ -19,8 +19,6 @@ Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allo
 
 For security reasons, browsers restrict cross-origin HTTP requests initiated from scripts. For example, fetch() and XMLHttpRequest follow the same-origin policy. This means that a web application using those APIs can only request resources from the same origin the application was loaded from unless the response from other origins includes the right CORS headers.
 
-![CORS Principal](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/cors_principle.png)
-
 ## CORS scope
 
 ### In Scope
