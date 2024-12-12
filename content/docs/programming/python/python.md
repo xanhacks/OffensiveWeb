@@ -34,3 +34,8 @@ os.path.join("uploads/", "flag.txt")  # uploads/../flag.txt
 <re.Match object; span=(0, 1), match='.'>
 >>> re.match("\.", "/../") # no match!
 ```
+
+#### Testing
+
+- [Regex Tester Online](https://pythex.org/)
+- [Visual Regex Tester Online](https://pythonium.net/regex)
