@@ -33,6 +33,10 @@ obj.print('world') # => 'Hello World'
 obj.send('print', 'world') # => 'Hello World'
 ```
 
+## Deserialization
+
+- [Ruby 3.4 Universal RCE Deserialization Gadget Chain](https://nastystereo.com/security/ruby-3.4-deserialization.html)
+
 ## References
 
 - [Send()-ing Myself Belated Christmas Gifts - GitHub.com's Environment Variables & GHES Shell](https://starlabs.sg/blog/2024/04-sending-myself-github-com-environment-variables-and-ghes-shell/)
