@@ -95,6 +95,30 @@ self[Object.keys(self)[5]]("XSS")
 </body>
 ```
 
+### textContent vs innerText
+
+[innerText](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/innerText) is aware of styling instead of [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent).
+
+```html
+<style>
+#strong {
+    visibility: hidden;
+}
+#div {
+    text-transform: uppercase;
+}
+</style>
+
+<div id="div">
+    <p>Hello <strong id="strong">world</strong>!</p>
+</div>
+
+<script>
+    console.log(div.textContent); // "Hello world!"
+    console.log(div.innerText); // "HELLO !"
+</script>
+```
+
 ### HTML parser fuzzing
 
 ```html
