@@ -4,6 +4,8 @@ OffensiveWeb aims to offer clear and comprehensive information on various web se
 
 - [https://offensiveweb.com/](https://www.offensiveweb.com/)
 
+![Homepage](./homepage.png)
+
 ## Description
 
 The goal is to provide clear and comprehensive information about web security concepts that can often be difficult to understand. More specifically, you will find resources related to web security, vulnerability research/analysis, fuzzing and also security measures to overcome various types of vulnerabilities.
